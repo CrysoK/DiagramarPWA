@@ -1,0 +1,35 @@
+# Lista de riesgos
+
+> **Versión:** `0.1.0`
+
+## 1. Introducción
+
+Este artefacto registra, evalúa y prioriza las incertidumbres técnicas, de
+gestión y de negocio asociadas a **Diagramar PWA**. En conformidad con el
+principio de desarrollo dirigido por el riesgo (_risk-driven_) del Proceso
+Unificado, los riesgos con mayor nivel de exposición (**R1** y **R2**)
+determinan los objetivos arquitectónicos de las primeras iteraciones de la fase
+de Elaboración.
+
+## 2. Matriz de evaluación y mitigación de riesgos
+
+|   ID   | Riesgo                                                                                                                                                                                                                                              |     Categoría     | Prob. | Impacto | Estrategia de mitigación y contingencia                                                                                                                                                                                                                                                                                       |
+| :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: | :---: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **R1** | **Complejidad del analizador léxico-sintáctico y del intérprete paso a paso.**<br>El diseño del parser, la construcción del AST, la tabla de símbolos y el control de ejecución con inspección de memoria concentran la mayor incertidumbre lógica. |      Técnico      | Alta  |  Alto   | **Mitigación:** Priorizar la arquitectura del motor lógico en la Iteración 1 de Elaboración (E1). Aplicar el Principio de Separación Modelo-Vista y el patrón _Interpreter_. Validar mediante pruebas unitarias exhaustivas y automatizadas en Vitest sobre el núcleo puro en TypeScript, sin interfaz gráfica.               |
+| **R2** | **Cálculo geométrico recursivo (_layout top-down_) y renderizado N-S.**<br>El anidamiento arbitrario de bloques exige recalcular dimensiones en cascada de forma eficiente para no degradar la fluidez visual en edición.                           |      Técnico      | Media |  Alto   | **Mitigación:** Desarrollar un motor matemático de dimensionamiento desacoplado antes del renderizado en el DOM/SVG. Implementar pruebas de concepto tempranas (_spikes_) en la fase de Elaboración para validar la reactividad ante estructuras complejas.                                                                   |
+| **R3** | **Vulneración de la integridad en la evaluación y auditoría en cliente.**<br>En una PWA sin backend es inviable ocultar secretos compartidos; el esquema simétrico original (HMAC) resultó inviable y fue descartado.                               | Técnico / Negocio | Media |  Medio  | **Mitigación:** Adopción de criptografía asimétrica nativa (WebCrypto API): firma digital del docente sobre la consigna y registro de acciones mediante historial encadenado (_hash-chain_ SHA-256). Las métricas se computan en vivo; una manipulación rompe la cadena. Validar el mecanismo al construir UC06, UC08 y UC09. |
+| **R4** | **Desvío del cronograma por dedicación parcial y calendario académico.**<br>Proyecto unipersonal sujeto a pausas por compromisos de cursado y turnos de examen (como la ocurrida en julio–agosto 2026).                                             |      Gestión      | Alta  |  Medio  | **Mitigación:** Aplicar planificación adaptativa (_Adaptive Planning_): compromisos macro en el Plan de Fase y planificación detallada de corto plazo (2 a 4 semanas) en el Plan de Iteración. Iteraciones con caja de tiempo (_timebox_) fija y alcance recortable (_de-scoping_).                                           |
+| **R5** | **Incompatibilidad en la reconstrucción del formato legado `.deb`.**<br>Una interpretación defectuosa del formato de _Diagramar (2009)_ impediría la migración del material didáctico existente.                                                    |      Técnico      | Media |  Medio  | **Mitigación:** Uso del código fuente decompilado de la herramienta original y archivos reales de la cátedra como banco de pruebas. **Contingencia:** Identificar subconjuntos no soportados y emitir advertencias explícitas al importar.                                                                                    |
+| **R6** | **Resistencia al cambio o baja adopción por parte de los docentes.**<br>Si la cátedra no adopta el software en las comisiones prácticas, el módulo de evaluación pierde su valor operativo.                                                         |      Negocio      | Baja  |  Alto   | **Mitigación:** Garantizar continuidad visual y notacional con el software anterior (perfil _Diagramar 2009 (UNSa)_ e importador `.deb`). Realizar demostraciones periódicas de los incrementos ejecutables a los docentes durante Elaboración.                                                                               |
+| **R7** | **Degradación del rendimiento durante la calificación masiva en el navegador.**<br>La verificación criptográfica, ejecución de casos de prueba y cálculo de métricas para ~350 entregas podría saturar el cliente web.                              |      Técnico      | Baja  |  Medio  | **Mitigación:** Empleo de historiales de auditoría livianos (deltas semánticos < 50 KB) y WebCrypto nativo. **Contingencia:** Diseñar el proceso de auditoría como un procesamiento por lotes (_batch_) en segundo plano con reporte progresivo.                                                                              |
+
+## 3. Notas metodológicas
+
+- **Actualización arquitectónica de R3:** Reemplaza formalmente la propuesta del
+  anteproyecto que contemplaba _salting_ y _hashing_ simétrico. La justificación
+  y el modelo de confianza asimétrico quedan documentados en la Especificación
+  Suplementaria (§ 2.1).
+- **Direccionamiento de Elaboración:** Los riesgos técnicos **R1** y **R2**
+  rigen la asignación de esfuerzo de las iteraciones de la fase de Elaboración,
+  asegurando que no se inicie la Construcción masiva de la UI sin haber
+  estabilizado el núcleo del intérprete y el algoritmo de layout.

@@ -1,54 +1,105 @@
-# DiagramarPWA
+# Diagramar PWA
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicación web progresiva para el aprendizaje, la ejecución y la evaluación de
+algoritmos representados mediante estructogramas de Nassi-Shneiderman.
 
-## Recommended IDE Setup
+## Estado actual
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+El repositorio se encuentra al inicio de la fase de elaboración del Proceso
+Unificado (iteración E1). La documentación de requisitos, el modelo de dominio y
+la planificación están en `docs/up/`. El código fuente corresponde al andamiaje
+inicial de Vue 3 y TypeScript; el núcleo de dominio (analizador, árbol de
+sintaxis abstracta e intérprete) aún no está implementado.
 
-## Recommended Browser Setup
+## Propósito
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Diagramar PWA sustituye a la herramienta de escritorio _Diagramar_ (UNSa, 2009).
+Está pensada para estudiantes y docentes de la asignatura Elementos de
+Programación. Debe operar exclusivamente en el cliente —sin servidor de
+aplicaciones ni base de datos centralizada— y funcionar fuera de línea.
 
-## Type Support for `.vue` Imports in TS
+## Alcance previsto
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Construcción visual de estructogramas, con manipulación directa, acoplamiento
+  magnético y espacio de trabajo de varios diagramas.
+- Ejecución y depuración paso a paso, con prueba de escritorio y seguimiento de
+  ámbitos de memoria.
+- Núcleo de dominio desacoplado de la interfaz: analizador sintáctico, árbol de
+  sintaxis abstracta, intérprete y transpilador a C.
+- Evaluación automática mediante casos de prueba.
+- Integridad académica: consignas firmadas con criptografía asimétrica del
+  navegador e historial encadenado por funciones de resumen.
+- Importación de archivos `.deb` de la herramienta de 2009.
+- Instalación como aplicación web progresiva y uso sin conexión.
 
-## Customize configuration
+## Tecnologías
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Lenguaje: [TypeScript](https://www.typescriptlang.org/), con tipado estricto
+- Interfaz: [Vue 3](https://vuejs.org/) (API de composición)
+- Estado: [Pinia](https://pinia.vuejs.org/)
+- Enrutamiento: [Vue Router](https://router.vuejs.org/)
+- Empaquetado y entorno de desarrollo: [Vite](https://vite.dev/)
+- Pruebas unitarias: [Vitest](https://vitest.dev/)
+- Gestor de paquetes: [pnpm](https://pnpm.io/)
 
-## Project Setup
+## Documentación
 
-```sh
+El desarrollo sigue el Proceso Unificado ágil descrito por Craig Larman. Los
+artefactos están organizados por disciplina en `docs/up/`:
+
+```text
+docs/up/
+├── 01-business-modeling/     # modelo de dominio
+├── 02-requirements/          # visión, casos de uso, especificación
+│                             # suplementaria, glosario y reglas de dominio
+├── 03-design/                # documento de arquitectura de software
+├── 08-project-management/    # plan de fase, planes de iteración y lista de
+│                             # riesgos
+└── 09-environment/           # caso de desarrollo
+```
+
+## Desarrollo
+
+### Requisitos
+
+- [Node.js](https://nodejs.org/) 22.18 o posterior de la serie 22, o 24.12 o
+  posterior
+- [pnpm](https://pnpm.io/)
+
+### Comandos
+
+```bash
+# Instalar dependencias
 pnpm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Servidor de desarrollo
 pnpm dev
-```
 
-### Type-Check, Compile and Minify for Production
+# Pruebas unitarias
+pnpm test:unit
 
-```sh
+# Comprobación de tipos
+pnpm type-check
+
+# Análisis estático y formateo
+pnpm lint
+pnpm format
+
+# Compilación para producción
 pnpm build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Contexto académico
 
-```sh
-pnpm test:unit
-```
+- **Institución:** Universidad Nacional de Salta (UNSa), Facultad de Ciencias
+  Exactas
+- **Carrera:** Licenciatura en Análisis de Sistemas
+- **Cátedra de aplicación:** Elementos de Programación
+- **Actividad:** Seminario de Sistemas
+- **Autor:** Ezequiel Lizandro Dzioba
+- **Director:** Javier Edgardo Trenti
 
-### Lint with [ESLint](https://eslint.org/)
+## Licencia
 
-```sh
-pnpm lint
-```
+El proyecto se distribuye bajo la licencia MIT. El texto completo está en
+[LICENSE](LICENSE).
