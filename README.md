@@ -1,7 +1,14 @@
 # Diagramar PWA
 
-Aplicación web progresiva para el aprendizaje, la ejecución y la evaluación de
-algoritmos representados mediante estructogramas de Nassi-Shneiderman.
+> **Entorno interactivo y progresivo para el aprendizaje, ejecución y evaluación
+> de algoritmos mediante estructogramas Nassi-Shneiderman (N-S).**
+
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vue 3](https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-4.x-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
+[![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 
 ## Estado actual
 
@@ -62,8 +69,7 @@ docs/up/
 
 ### Requisitos
 
-- [Node.js](https://nodejs.org/) 22.18 o posterior de la serie 22, o 24.12 o
-  posterior
+- [Node.js](https://nodejs.org/) 24 LTS (24.15 o posterior de la serie 24)
 - [pnpm](https://pnpm.io/)
 
 ### Comandos
