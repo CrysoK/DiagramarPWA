@@ -176,17 +176,20 @@ true`), Vue.js 3 (Composition API) para la interfaz de usuario y Vite como
 
 ### 9.2 Memoria dinámica y punteros
 
-| ID          | Regla                      | Descripción                                                                                                                                                       |
-| :---------- | :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RULE-05** | Reserva dinámica (`nuevo`) | Instancia una celda en memoria dinámica y retorna su referencia válida (`esNulo = falso`).                                                                        |
-| **RULE-06** | Liberación (`liberar`)     | Desasigna la memoria asociada a una referencia vigente y la establece en `NULO`. Intentar liberar `NULO` o una referencia inválida produce un error de ejecución. |
-| **RULE-07** | Desreferenciación nula     | Intentar acceder a los miembros de una referencia `NULO` genera un error de ejecución.                                                                            |
+Las palabras clave de reserva, liberación y valor nulo las define el perfil
+activo (en _Estándar_: `nuevo`, `liberar` y `NULO`).
+
+| ID          | Regla                  | Descripción                                                                                                                           |
+| :---------- | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| **RULE-05** | Reserva dinámica       | Instancia una celda en memoria dinámica y retorna una referencia válida (no nula).                                                    |
+| **RULE-06** | Liberación             | Desasigna la memoria asociada a una referencia vigente y la deja nula. Liberar el valor nulo o una referencia inválida produce error. |
+| **RULE-07** | Desreferenciación nula | Intentar acceder a los miembros de una referencia nula genera un error de ejecución.                                                  |
 
 ### 9.3 Listas y estructuras compuestas
 
 | ID          | Regla                 | Descripción                                                                                                                                                                                  |
 | :---------- | :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RULE-08** | Declaración de cotas  | La definición de cotas `[inf..sup]` fija la base y capacidad. Sin cotas, el límite inferior toma el valor de `baseIndexacion` del perfil (0 o 1).                                            |
+| **RULE-08** | Declaración de cotas  | La definición de cotas `[inf..sup]` fija la base y capacidad. Sin cotas, el límite inferior toma la base de indexación del perfil (0 o 1).                                                   |
 | **RULE-09** | Crecimiento de listas | Si el perfil admite dimensión dinámica, la lista puede crecer más allá de su capacidad inicial (perdiendo su capacidad de transpilar a C). Si es fija, desbordar la capacidad produce error. |
 | **RULE-10** | Matrices              | Se modelan conceptualmente como listas anidadas (listas de listas).                                                                                                                          |
 
@@ -202,7 +205,7 @@ true`), Vue.js 3 (Composition API) para la interfaz de usuario y Vite como
 | ID          | Regla                     | Descripción                                                                                                                                                                               |
 | :---------- | :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **RULE-13** | Validez de firma de tarea | Una tarea es válida únicamente si la firma digital asimétrica del emisor verifica contra el contenido de la consigna. Una firma alterada impide la activación del contexto de evaluación. |
-| **RULE-14** | Invariante de historial   | El historial de eventos es estrictamente acumulativo (_append-only_). Si un evento es eliminado, reordenado o modificado, la cadena de hashes queda invalidada (`esIntegro = falso`).     |
+| **RULE-14** | Invariante de historial   | El historial de eventos es estrictamente acumulativo (_append-only_). Si un evento es eliminado, reordenado o modificado, la cadena de hashes queda invalidada.                           |
 
 ## 10. Aspectos legales
 

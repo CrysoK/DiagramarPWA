@@ -45,14 +45,14 @@ seguridad, de la plataforma y de los formatos de persistencia.
 - **Perfil de usuario:** Perfil personalizado creado por un docente o
   institución, distribuible como archivo JSON independiente.
 - **Régimen de tipado:** Disciplina aplicada por el analizador semántico
-  (`estático` con inferencia fuerte o `dinámico` con celdas de tipo libre).
-- **Política de declaración:** Modalidad de nacimiento de variables: `explícita`
-  (obligatoria antes de su uso) o `implícita` (nace en la primera asignación o
+  (estático con inferencia fuerte o dinámico con celdas de tipo libre).
+- **Política de declaración:** Modalidad de nacimiento de variables: explícita
+  (obligatoria antes de su uso) o implícita (nace en la primera asignación o
   lectura).
 - **Política de ámbitos:** Niveles de visibilidad habilitados y resolución
   jerárquica de identificadores.
-- **Longitud de lista:** Régimen dimensional (`fija` o `dinámica`). Si es
-  dinámica, permite mutaciones de tamaño en tiempo de ejecución (lo que anula la
+- **Longitud de lista:** Régimen dimensional (fija o dinámica). Si es dinámica,
+  permite mutaciones de tamaño en tiempo de ejecución (lo que anula la
   exportación directa a arreglos estáticos de C).
 - **Subprogramas (on/off):** Parámetro que habilita o inhabilita la gestión de
   pestañas secundarias (funciones y procedimientos) en el espacio de trabajo.
@@ -71,19 +71,19 @@ seguridad, de la plataforma y de los formatos de persistencia.
   la contigüidad espacial de los bloques geométricos, impidiendo el uso de salto
   incondicionales (_goto_).
 - **Bloque N-S:** Unidad gráfica y semántica elemental. Catálogo:
-  - `Entrada`: Lectura de datos externos asignados a un destino de memoria.
-  - `Salida`: Emisión de expresiones evaluadas o cadenas literales hacia la
+  - **Entrada:** Lectura de datos externos asignados a un destino de memoria.
+  - **Salida:** Emisión de expresiones evaluadas o cadenas literales hacia la
     consola.
-  - `Asignación`: Evaluación de una expresión y almacenamiento en un destino de
-    memoria.
-  - `Invocación (procedimiento)`: Ejecución de un subprograma como sentencia
+  - **Asignación:** Evaluación de una expresión y almacenamiento en un destino
+    de memoria.
+  - **Invocación (procedimiento):** Ejecución de un subprograma como sentencia
     independiente.
-  - `Alternativa`: Bifurcación condicional booleana (ramas Verdadero y Falso).
-  - `Ciclo Mientras`: Iteración pretest que evalúa la condición antes de cada
+  - **Alternativa:** Bifurcación condicional booleana (ramas verdadero y falso).
+  - **Ciclo mientras:** Iteración pretest que evalúa la condición antes de cada
     repetición.
-  - `Ciclo Repetir-Hasta`: Iteración postest que evalúa la condición de corte al
-    final.
-  - `Ciclo Para`: Iteración incondicional gobernada por variable de control,
+  - **Ciclo repetir-hasta:** Iteración postest que evalúa la condición de corte
+    al final.
+  - **Ciclo para:** Iteración incondicional gobernada por variable de control,
     valor inicial, final y paso.
 - **Subprograma (Módulo):** Diagrama secundario alojado en una pestaña
   independiente. Puede actuar como **función** (invocada en expresiones, con
@@ -114,24 +114,23 @@ seguridad, de la plataforma y de los formatos de persistencia.
   - _Simple:_ Variable atómica directa.
   - _Elemento de lista:_ Celda indexada (`L[i]`, `M[i][j]`).
   - _Campo de registro:_ Miembro nombrado (`registro.campo`).
-  - _Desreferenciación:_ Celda apuntada por una referencia (`p.dato`, `p->dato`,
-    `p^.dato`).
+  - _Desreferenciación:_ Celda apuntada por una referencia. La sintaxis de
+    acceso la define el perfil activo.
 - **Tipo de dato:** Clasificación conceptual de los valores:
-  - _Tipos simples:_ Escalares atómicos (`Entero`, `Real`, `Lógico`, `Carácter`,
-    `Cadena`).
-  - _Tipos estructurados:_ Composiciones homogéneas o heterogéneas (`Lista`,
-    `Registro`, `Enumeración`, `Puntero`).
+  - _Tipos simples:_ escalares atómicos (entero, real, lógico, carácter,
+    cadena).
+  - _Tipos estructurados:_ composiciones homogéneas o heterogéneas (lista,
+    registro, enumeración, puntero).
 - **Ámbito (_Scope_):** Región del algoritmo donde un identificador es
-  accesible. Jerarquía: `Programa` (global a la sesión), `Subprograma` (local al
-  módulo) y `Bloque` (local al cuerpo de una estructura condicional o
-  iterativa).
+  accesible. Jerarquía: programa (global a la sesión), subprograma (local al
+  módulo) y bloque (local al cuerpo de una estructura condicional o iterativa).
 - **Puntero:** Tipo de dato cuyos valores son direcciones de memoria a celdas o
-  el literal constante `NULO`.
-- **Referencia (dirección / puntero):** Enlace que designa una celda de memoria
-  o `NULO`. El predicado `esNulo` es verdadero si no apunta a ninguna celda
-  válida.
-- **`NULO`:** Literal que representa una referencia inválida. Intentar
-  desreferenciarla genera un error de ejecución.
+  el valor nulo.
+- **Referencia (dirección / puntero):** Enlace que designa una celda de memoria.
+  Es nula si no apunta a ninguna celda válida.
+- **Valor nulo:** Valor de una referencia que no designa ninguna celda. Intentar
+  desreferenciarlo genera un error de ejecución. El perfil activo define la
+  palabra clave que lo denota (en el perfil _Estándar_, `NULO`).
 - **Celda de memoria:** Unidad básica de almacenamiento físico de un valor
   escalar o referencia.
 - **Lista:** Secuencia indexada unidimensional. Sus cotas son opcionales en la
@@ -176,8 +175,8 @@ seguridad, de la plataforma y de los formatos de persistencia.
   asociadas a una tarea evaluable.
 - **Oráculo de pruebas:** Componente que ejecuta el algoritmo inyectando las
   entradas y cotejando las salidas producidas contra las esperadas.
-- **Resultado de caso de prueba:** Veredicto emitido por el oráculo: `exitoso`,
-  `salidaIncorrecta`, `tiempoExcedido` o `errorEjecucion`.
+- **Resultado de caso de prueba:** Veredicto emitido por el oráculo: exitoso,
+  salida incorrecta, tiempo excedido o error de ejecución.
 - **Principio de Separación Modelo-Vista:** Directriz de diseño que garantiza
   que los objetos de dominio (AST, parser, intérprete, transpilador) no poseen
   conocimiento ni dependencias hacia los componentes de la interfaz de usuario
@@ -200,24 +199,23 @@ seguridad, de la plataforma y de los formatos de persistencia.
   (_append-only_) de operaciones de edición y ejecución realizadas por el
   usuario.
 - **Acción de trabajo (Acción semántica):** Evento del historial con marca
-  temporal. Tipos: `estructuracion`, `edicionTexto`, `ejecucion`, `cambioFoco`,
-  `declaracionIdentidad`.
+  temporal. Tipos: estructuración, edición de texto, ejecución, cambio de foco y
+  declaración de identidad.
 - **Encadenamiento criptográfico (_Hash-Chain_):** Mecanismo de integridad donde
   cada acción semántica incorpora el hash SHA-256 de la acción anterior.
-  Cualquier alteración manual del archivo rompe la cadena (`esIntegro = falso`).
-- **Métricas de auditoría:** Indicadores derivados (`/`) calculados en vivo por
-  el sistema a partir del historial durante la auditoría docente:
-  - `/tiempoActivo`: Suma de duraciones entre acciones consecutivas, excluyendo
-    pausas fuera de foco.
-  - `/cantidadEjecuciones`: Total de ejecuciones lanzadas.
-  - `/totalErroresSintaxis`: Conteo de advertencias sintácticas detectadas
-    durante el trabajo.
+  Cualquier alteración manual del archivo rompe la cadena y la deja inválida.
+- **Métricas de auditoría:** Indicadores derivados calculados en vivo por el
+  sistema a partir del historial durante la auditoría docente:
+  - **Tiempo activo:** Suma de duraciones entre acciones consecutivas,
+    excluyendo pausas fuera de foco.
+  - **Cantidad de ejecuciones:** Total de ejecuciones lanzadas.
+  - **Total de errores de sintaxis:** Conteo de advertencias sintácticas
+    detectadas durante el trabajo.
 - **Entrega:** Archivo `.dpwa` exportado por el alumno con su solución, la tarea
   firmada original y el historial completo encadenado.
 - **Alerta de auditoría:** Notificación visual ante anomalías de resolución.
-  Motivos: `anomaliaTemporal`, `pegadoMasivo`, `inconsistenciaIdentidad`,
-  `rupturaIntegridad`. Severidad: `informativa`, `advertencia`,
-  `sospechaCritica`.
+  Motivos: anomalía temporal, pegado masivo, inconsistencia de identidad y
+  ruptura de integridad. Severidad: informativa, advertencia o sospecha crítica.
 - **Reporte de evaluación:** Documento tabular exportable (CSV) con las
   calificaciones, veredictos del oráculo y banderas de auditoría de un lote de
   entregas.
@@ -242,17 +240,21 @@ seguridad, de la plataforma y de los formatos de persistencia.
 
 ### 7.1 Tipos de datos del motor lógico
 
-| Tipo      | Literales / Formato                                | Operadores soportados                      | Comportamiento en transpilación a C                                              |
-| :-------- | :------------------------------------------------- | :----------------------------------------- | :------------------------------------------------------------------------------- |
-| `INTEGER` | Dígitos enteros (ej. `0`, `42`, `-5`)              | `+`, `-`, `*`, `/`, `%`, `MOD`, `DIV`      | Mapea a `int` o `long`.                                                          |
-| `REAL`    | Decimal con punto (ej. `3.14`, `-0.5`)             | `+`, `-`, `*`, `/`                         | Mapea a `double`.                                                                |
-| `BOOLEAN` | `true`, `false`, `V`, `F`, `VERDADERO`, `FALSO`    | `not`, `and`, `or`, `~`, `&`, `\|`         | Mapea a `bool` (`<stdbool.h>`) o `int`.                                          |
-| `CHAR`    | Carácter entre comillas simples (ej. `'a'`, `'%'`) | Operadores relacionales (`==`, `<>`, etc.) | Mapea a `char`.                                                                  |
-| `STRING`  | Texto entre comillas dobles (ej. `"Hola"`)         | `+` (concatenación según perfil)           | Mapea a `char[]` o literales de cadena.                                          |
-| `POINTER` | Direcciones de memoria o literal `NULO`            | `==`, `<>`, asignación, `nuevo`, `liberar` | Mapea a punteros nativos (`Tipo*`).                                              |
-| `LIST`    | Corchetes `[e1, e2]` o declarada con cotas         | Indexación `L[i]`, asignación              | Mapea a arreglos nativos C si es homogénea y acotada; si no, aborta exportación. |
-| `RECORD`  | Campos clave-valor `{ c1: v1, c2: v2 }`            | Acceso a miembro `.`                       | Mapea a `struct` de C si la estructura de campos es estática.                    |
-| `ENUM`    | Símbolos identificadores nominales                 | Operadores relacionales, asignación        | Mapea a `typedef enum { ... }` nativo de C.                                      |
+Las grafías (palabras clave, operadores y formas de indexación) las define el
+perfil activo. La tabla describe el modo de denotación de cada tipo y las
+operaciones que admite.
+
+| Tipo      | Denotación                                                     | Operaciones                                                      | Transpilación a C                                                                |
+| :-------- | :------------------------------------------------------------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| `INTEGER` | Secuencia de dígitos, con signo opcional (ej. `0`, `42`, `-5`) | Aritmética, división entera, resto y comparación                 | Mapea a `int` o `long`.                                                          |
+| `REAL`    | Decimal con punto (ej. `3.14`, `-0.5`)                         | Aritmética y comparación                                         | Mapea a `double`.                                                                |
+| `BOOLEAN` | Palabras clave de verdadero y falso del perfil                 | Negación, conjunción y disyunción                                | Mapea a `bool` (`<stdbool.h>`) o `int`.                                          |
+| `CHAR`    | Carácter entre comillas simples (ej. `'a'`, `'%'`)             | Comparación                                                      | Mapea a `char`.                                                                  |
+| `STRING`  | Texto entre comillas dobles (ej. `"Hola"`)                     | Concatenación (si el perfil la habilita) y comparación           | Mapea a `char[]` o literales de cadena.                                          |
+| `POINTER` | Dirección de celda o valor nulo                                | Comparación, asignación, reserva, liberación y desreferenciación | Mapea a punteros nativos (`Tipo*`).                                              |
+| `LIST`    | Secuencia indexada; cotas opcionales en la declaración         | Indexación y asignación                                          | Mapea a arreglos nativos C si es homogénea y acotada; si no, aborta exportación. |
+| `RECORD`  | Agregado de campos nombrados                                   | Acceso a campo y asignación                                      | Mapea a `struct` de C si la estructura de campos es estática.                    |
+| `ENUM`    | Identificadores simbólicos del tipo                            | Comparación y asignación                                         | Mapea a `typedef enum { ... }` nativo de C.                                      |
 
 ### 7.2 Formatos de interfaz y persistencia
 
@@ -262,5 +264,5 @@ seguridad, de la plataforma y de los formatos de persistencia.
 | `.json` (config) | JSON            | Objeto estructurado según esquema (perfil, reglas o casos de prueba).                                   | Intercambio y distribución modular de configuraciones de cátedra.    |
 | `.json` (claves) | JSON            | Par de claves criptográficas WebCrypto en formato JWK.                                                  | Respaldo, uso en otras terminales y distribución de claves docentes. |
 | `.deb`           | Binario / XML   | Serialización de clases .NET de _Diagramar (2009)_.                                                     | Migración de material didáctico histórico hacia el nuevo modelo.     |
-| `.csv`           | Texto plano     | Columnas: `Identificador`, `Calificación`, `CasosSuperados`, `TiempoActivo`, `Alertas`.                 | Exportación masiva de resultados para planillas de cátedra.          |
+| `.csv`           | Texto plano     | Columnas: Identificador, Calificación, Casos superados, Tiempo activo, Alertas.                         | Exportación masiva de resultados para planillas de cátedra.          |
 | `.png` / `.pdf`  | Binario gráfico | Renderizado gráfico del estructograma y de la tabla de prueba de escritorio.                            | Exportación documental e impresión.                                  |

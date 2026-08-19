@@ -98,8 +98,8 @@ gantt
 - **REQ-E1.1:** Elaborar el diagrama de secuencia del sistema (DSS) para el
   escenario básico de ejecución en memoria de **UC02**. _(2.0 hs)_
 - **REQ-E1.2:** Especificar los contratos de operación para las operaciones del
-  sistema: `iniciarSimulacion()`, `ejecutarSiguientePaso()` y
-  `obtenerEstadoMemoria()`. _(2.5 hs)_
+  sistema: `startSimulation()`, `executeNextStep()` y `getMemoryState()`. _(2.5
+  hs)_
 - **REQ-E1.3:** Refinar los conceptos de _ámbito de memoria_, _celda de memoria_
   y _valor escalar_ en el modelo de dominio conceptual. _(1.5 hs)_
 
@@ -168,8 +168,8 @@ _timebox_ al 06/09/2026, se aplicarán las siguientes prioridades de recorte:
    - Tabla de símbolos básica y asignación de variables escalares en memoria.
    - Suite de pruebas unitarias automatizadas con Vitest pasando al 100%.
 2. **Candidatos primarios a descarte (pospuestos a E2):**
-   - Soporte de ciclos `CicloPara` y `CicloRepetirHasta` en el parser (mantener
-     solo `CicloMientras`).
+   - Soporte de ciclos `ForNode` y `RepeatUntilNode` en el parser (mantener solo
+     `WhileNode`).
    - Funciones predefinidas complejas (`RAIZ`, `TRUNC`).
    - Manejo de arreglos unidimensionales (listas) en memoria.
 
@@ -184,7 +184,7 @@ descartable, sino una **porción de código de calidad de producción
 1. **Verificación automatizada:** La suite de pruebas de Vitest ejecuta y
    aprueba el 100% de los tests unitarios sin fallas (_green bar_).
 2. **Demostración ejecutable:** Un script de prueba ejecuta con éxito un
-   algoritmo estructurado (con variables, condiciones y bucles `Mientras`)
+   algoritmo estructurado (con variables, condiciones y bucles mientras)
    instanciado en el AST en memoria, imprimiendo la traza completa de la memoria
    paso a paso en consola.
 3. **Trazabilidad documental:** Los diagramas de interacción y el DCD reflejan
