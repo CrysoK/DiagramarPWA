@@ -179,6 +179,7 @@ classDiagram
 
     class Simulacion["Simulación (Ejecución)"] {
         modo: continuo | pasoAPaso
+        estado: enEjecucion | pausada | finalizada | error | detenida
     }
     class PasoDeSimulacion["Paso de simulación"] {
         numeroDePaso
