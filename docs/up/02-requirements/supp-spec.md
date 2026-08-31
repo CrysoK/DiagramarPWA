@@ -15,7 +15,7 @@ ni base de datos centralizada), este artefacto resulta crítico para formalizar
 la seguridad criptográfica en el cliente, la operación fuera de línea y el
 aislamiento del motor lógico.
 
-## 2. Funcionalidad (Aspectos transversales)
+## 2. Funcionalidad (aspectos transversales)
 
 ### 2.1 Seguridad y auditoría de integridad académica
 
@@ -51,7 +51,7 @@ y proveer evidencia objetiva del proceso de resolución para la cátedra.
   ejecuciones, errores de sintaxis) no se almacenan precalculadas: se computan
   en vivo desde el historial durante la auditoría docente. Ante una ruptura de
   integridad, el sistema alerta sobre la corrupción y bloquea el reporte.
-- **Límites declarados de seguridad (Exclusiones de alcance):** Quedan
+- **Límites declarados de seguridad (exclusiones de alcance):** Quedan
   formalmente fuera del alcance de la seguridad la prevención de ayudas externas
   físicas (dispositivos móviles, consultas interpersonales) y la manipulación
   avanzada de la memoria del navegador en tiempo de ejecución (DevTools),
@@ -64,12 +64,12 @@ El comportamiento del motor (convenciones léxicas, régimen de tipado, polític
 de declaración, reglas de ámbito, modalidad de pasaje de parámetros y
 subprogramas) se parametriza mediante perfiles de configuración declarativos en
 formato JSON. El sistema incluye perfiles predefinidos (_Estándar_, _Diagramar
-2009 UNSa_, _C_, _Python_) y permite la creación, importación y exportación de
+2009 (UNSa)_, _C_, _Python_) y permite la creación, importación y exportación de
 esquemas personalizados. En contexto de evaluación, el perfil activo y las
 restricciones de alcance quedan embebidos y protegidos bajo la firma digital de
 la tarea.
 
-## 3. Usabilidad (Usability)
+## 3. Usabilidad
 
 - **Idioma:** La interfaz de usuario, mensajes diagnósticos y documentación se
   presentan íntegramente en español.
@@ -88,9 +88,9 @@ la tarea.
 - **Personalización:** Interfaz adaptativa basada en variables CSS que soporta
   temas visuales (Claro, Oscuro, Solarized).
 
-## 4. Confiabilidad (Reliability)
+## 4. Confiabilidad
 
-- **Disponibilidad autónoma (_Offline-first_):** La totalidad de las funciones
+- **Disponibilidad autónoma (_offline-first_):** La totalidad de las funciones
   de modelado, interpretación, prueba de escritorio, transpilación y auditoría
   operan sin conexión a internet tras la primera carga o instalación de la PWA.
 - **Aislamiento de fallos algorítmicos:** Los bucles infinitos o excepciones en
@@ -104,7 +104,7 @@ la tarea.
   completo (pestañas, configuraciones, historiales y firmas) en un único archivo
   local `.dpwa`.
 
-## 5. Rendimiento (Performance)
+## 5. Rendimiento
 
 - **Fluidez de edición:** El recálculo geométrico recursivo y renderizado del
   diagrama ante modificaciones responde en menos de 50 ms para diagramas
@@ -119,27 +119,27 @@ la tarea.
   oráculo de pruebas y generación de métricas para un lote de 350 entregas se
   completa en menos de 15 segundos en un equipo de desarrollo estándar.
 
-## 6. Soportabilidad (Supportability)
+## 6. Soportabilidad
 
 - **Multiplataforma:** Ejecución homogénea en navegadores web modernos
   (Chromium, Firefox, Safari/WebKit) sobre Windows, Linux, macOS, Android e iOS.
 - **Estándar PWA:** Cumplimiento estricto de estándares W3C para manifiestos de
   aplicación web y _Service Workers_, permitiendo la instalación en el sistema
   operativo y ejecución en ventana propia.
-- **Mantenibilidad arquitectónica:** Aplicación estricta del **Principio de
-  Separación Modelo-Vista**. El motor lógico (AST, parser, intérprete,
+- **Mantenibilidad arquitectónica:** Aplicación estricta del **principio de
+  separación modelo-vista**. El motor lógico (AST, parser, intérprete,
   transpilador) es autónomo, reutilizable y cuenta con cobertura de pruebas
   unitarias automatizadas con Vitest.
 - **Extensibilidad prevista:** La arquitectura contempla la futura
-  internacionalización (i18n) y el análisis de cobertura de pruebas (_Test
-  Coverage_) sin requerir rediseños estructurales.
+  internacionalización (i18n) y el análisis de cobertura de pruebas (_test
+  coverage_) sin requerir rediseños estructurales.
 
 ## 7. Restricciones de implementación (+)
 
-- **Arquitectura 100% Client-Side:** No se implementará servidor de aplicaciones
-  (_backend_) ni bases de datos remotas. Todo el procesamiento, validación y
-  persistencia se realiza localmente.
-- **Stack tecnológico:** TypeScript compilado con tipado estricto (`strict:
+- **Arquitectura 100% _client-side_:** No se implementará servidor de
+  aplicaciones (_backend_) ni bases de datos remotas. Todo el procesamiento,
+  validación y persistencia se realiza localmente.
+- **Pila tecnológica:** TypeScript compilado con tipado estricto (`strict:
 true`), Vue.js 3 (Composition API) para la interfaz de usuario y Vite como
   empaquetador.
 - **Criptografía nativa:** Operaciones de hash (SHA-256) y firmas digitales
@@ -152,7 +152,7 @@ true`), Vue.js 3 (Composition API) para la interfaz de usuario y Vite como
   licencias de código abierto permisivas (MIT, Apache 2.0). El proyecto se
   distribuye bajo licencia MIT.
 
-## 8. Interfaces externas (Formatos de archivo)
+## 8. Interfaces externas (formatos de archivo)
 
 | Formato          | Dirección           | Descripción                                                                                                                                                               |
 | :--------------- | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -163,7 +163,7 @@ true`), Vue.js 3 (Composition API) para la interfaz de usuario y Vite como
 | CSV              | Solo escritura      | Reporte tabular consolidado de calificaciones y auditoría docente resultante de la evaluación masiva.                                                                     |
 | PNG / PDF        | Solo escritura      | Exportación gráfica del estructograma y de la traza de la prueba de escritorio.                                                                                           |
 
-## 9. Reglas de dominio (Domain Rules)
+## 9. Reglas de dominio
 
 ### 9.1 Reglas generales y estructuración
 
@@ -193,7 +193,7 @@ activo (en _Estándar_: `nuevo`, `liberar` y `NULO`).
 | **RULE-09** | Crecimiento de listas | Si el perfil admite dimensión dinámica, la lista puede crecer más allá de su capacidad inicial (perdiendo su capacidad de transpilar a C). Si es fija, desbordar la capacidad produce error. |
 | **RULE-10** | Matrices              | Se modelan conceptualmente como listas anidadas (listas de listas).                                                                                                                          |
 
-### 9.4 Resolución de nombres y ámbitos (_Scopes_)
+### 9.4 Resolución de nombres y ámbitos (_scopes_)
 
 | ID          | Regla                   | Descripción                                                                                                                                    |
 | :---------- | :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |

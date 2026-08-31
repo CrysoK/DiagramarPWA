@@ -4,7 +4,7 @@
 
 ## 1. Introducción
 
-El **Modelo de Dominio** es una representación visual de las clases conceptuales
+El **modelo de dominio** es una representación visual de las clases conceptuales
 del mundo real identificadas para **Diagramar PWA**. Presentado desde una
 **perspectiva conceptual**, este artefacto opera como un vocabulario visual de
 términos, abstracciones y relaciones significativas del problema; no describe
@@ -13,14 +13,14 @@ implementación.
 
 El modelo se organiza en tres paquetes conceptuales:
 
-1. **Estructura del algoritmo (Notación N-S):** Descomposición sintáctica de los
+1. **Estructura del algoritmo (notación N-S):** Descomposición sintáctica de los
    estructogramas y modularidad.
-2. **Simulación pedagógica (Prueba de escritorio):** Conceptos asociados a la
+2. **Simulación pedagógica (prueba de escritorio):** Conceptos asociados a la
    ejecución observable y estado de la memoria.
 3. **Configuración, evaluación didáctica y auditoría:** Instrumentos docentes,
    integridad criptográfica y calificación automática.
 
-## 2. Estructura del algoritmo (Notación Nassi-Shneiderman)
+## 2. Estructura del algoritmo (notación Nassi-Shneiderman)
 
 Modela los componentes de un estructograma: la contigüidad jerárquica de
 bloques, los destinos de memoria (_l-values_), las expresiones evaluables y el
@@ -30,7 +30,7 @@ sistema de tipos de datos.
 classDiagram
     direction TB
 
-    %% ESPACIO DE TRABAJO Y MODULARIDAD
+    %% Espacio de trabajo y modularidad
     class EspacioDeTrabajo["Espacio de trabajo"]
     class Diagrama {
         <<abstract>>
@@ -63,7 +63,7 @@ classDiagram
     Diagrama "1" *-- "0..*" Variable : declaraLocales
     Subprograma "1" *-- "0..*" ParametroFormal : declaraParametros
 
-    %% JERARQUÍA DE BLOQUES N-S
+    %% Jerarquía de bloques N-S
     class Bloque {
         <<abstract>>
     }
@@ -81,9 +81,9 @@ classDiagram
     class CicloIncondicional {
         <<abstract>>
     }
-    class CicloMientras["Ciclo Mientras"]
-    class CicloRepetirHasta["Ciclo Repetir-Hasta"]
-    class CicloPara["Ciclo Para"]
+    class CicloMientras["Ciclo mientras"]
+    class CicloRepetirHasta["Ciclo repetir-hasta"]
+    class CicloPara["Ciclo para"]
 
     Secuencia "1" *-- "0..*" Bloque : contieneOrdenados
     Bloque <|-- Entrada
@@ -103,7 +103,7 @@ classDiagram
     Alternativa "1" *-- "1" Secuencia : ramaFalsa
     Ciclo "1" *-- "1" Secuencia : cuerpo
 
-    %% ELEMENTOS DE OPERACIÓN: DESTINOS DE ACCESO Y EXPRESIONES
+    %% Elementos de operación: destinos de acceso y expresiones
     class Expresion["Expresión"] {
         texto
     }
@@ -130,7 +130,7 @@ classDiagram
     InvocacionProcedimiento "0..*" *-- "0..*" Expresion : argumentos
     Expresion "0..*" -- "0..*" Funcion : invoca
 
-    %% SISTEMA DE TIPOS CONCEPTUAL
+    %% Sistema de tipos conceptual
     class TipoDeDato["Tipo de dato"] {
         <<abstract>>
         nombre
@@ -177,7 +177,7 @@ memoria en función del ámbito vigente.
 classDiagram
     direction TB
 
-    class Simulacion["Simulación (Ejecución)"] {
+    class Simulacion["Simulación (ejecución)"] {
         modo: continuo | pasoAPaso
         estado: enEjecucion | pausada | finalizada | error | detenida
     }
@@ -185,7 +185,7 @@ classDiagram
         numeroDePaso
     }
     class EstadoDeMemoria["Estado de memoria"]
-    class AmbitoDeMemoria["Ámbito de memoria (Scope)"] {
+    class AmbitoDeMemoria["Ámbito de memoria (scope)"] {
         nombreAmbito
     }
     class Diagrama
@@ -202,7 +202,7 @@ classDiagram
         dato
         tipoInmanente
     }
-    class ReferenciaMemoria["Referencia (Dirección / Puntero)"] {
+    class ReferenciaMemoria["Referencia (dirección / puntero)"] {
         esNulo
     }
     class EventoES["Evento de E/S"] {
@@ -246,7 +246,7 @@ entregas.
 classDiagram
     direction TB
 
-    %% REGLAS Y CONFIGURACIÓN
+    %% Reglas y configuración
     class PerfilConfiguracion["Perfil de configuración"] {
         nombre
         convencionesSintacticas
@@ -265,8 +265,8 @@ classDiagram
 
     RestriccionDeAlcance "1" *-- "1..*" ReglaDeRestriccion : contieneReglas
 
-    %% TAREA Y EVALUACIÓN
-    class TareaEvaluable["Tarea evaluable (Plantilla)"] {
+    %% Tarea y evaluación
+    class TareaEvaluable["Tarea evaluable (plantilla)"] {
         titulo
         enunciado
         tipoEvaluacion: examen | trabajoPractico

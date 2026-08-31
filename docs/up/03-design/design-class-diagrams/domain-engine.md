@@ -4,10 +4,11 @@
 
 ## 1. Introducción y decisiones arquitectónicas
 
-El presente **Diagrama de Clases de Diseño (DCD)** modela la perspectiva de software del subsistema central de ejecución
-algorítmica (_Core Domain Engine_) de **Diagramar PWA**. A diferencia del Modelo de Dominio (perspectiva conceptual),
-este artefacto describe de manera rigurosa las clases, interfaces, métodos, atributos tipados y relaciones de
-visibilidad implementadas en **TypeScript**, bajo compilación estricta (`strict: true`).
+El presente **diagrama de clases de diseño (DCD)** modela la perspectiva de software del subsistema central de ejecución
+algorítmica (_Core Domain Engine_) de **Diagramar PWA**. A diferencia del [modelo de
+dominio](../../01-business-modeling/domain-model.md) (perspectiva conceptual), este artefacto describe de manera
+rigurosa las clases, interfaces, métodos, atributos tipados y relaciones de visibilidad implementadas en **TypeScript**,
+bajo compilación estricta (`strict: true`).
 
 El diseño satisface los siguientes requerimientos y decisiones arquitectónicas:
 
@@ -19,7 +20,8 @@ El diseño satisface los siguientes requerimientos y decisiones arquitectónicas
    - Las sentencias del estructograma aplican un **stepper explícito** mediado por una pila de marcos (`executionStack:
 ExecutionFrame[]`): cada sentencia ejecuta su semántica atómica y devuelve una acción de control (`NextAction`),
      delegando el avance del puntero a la clase `Simulation`. Esto garantiza la ejecución paso a paso observable y la
-     pausabilidad inmediata exigida por UC02 sin caer en llamadas recursivas bloqueantes.
+     pausabilidad inmediata exigida por [UC02](../../02-requirements/use-cases/uc02.md) sin caer en llamadas recursivas
+     bloqueantes.
 3. **Patrones GRASP de asignación de responsabilidades:**
    - **Controlador:** La clase `AlgorithmInterpreter` canaliza las operaciones del sistema emitidas desde la interfaz o
      el arnés de pruebas (Vitest).
@@ -28,13 +30,13 @@ ExecutionFrame[]`): cada sentencia ejecuta su semántica atómica y devuelve una
    - **Creador:** `Simulation` crea el ámbito raíz, la pila de marcos inicial y la traza de ejecución;
      `AlgorithmInterpreter` crea la instancia de `Simulation`.
    - **Mapeo conceptual directo:** `ExpressionNode` y los nodos de sentencias mapean directamente los conceptos
-     `Expresión` y `Bloque` del Modelo de Dominio.
+     `Expresión` y `Bloque` del [modelo de dominio](../../01-business-modeling/domain-model.md).
    - **Fabricación pura:** Clases como `MemoryScope`, `SymbolTable`, `ExecutionTrace` y `ExecutionContext` se introducen
      para mantener alta cohesión y bajo acoplamiento.
 4. **Separación comando-consulta (CQS):** Las operaciones que alteran el estado (`step()`, `setVariableValue()`) son
    métodos de tipo comando, mientras que la inspección (`getMemoryState()`, `evaluate()`, `getSnapshot()`) es libre de
    efectos colaterales.
-5. **Representación de memoria mediante uniones discriminadas (_Tagged Unions_):** Los valores en tiempo de ejecución
+5. **Representación de memoria mediante uniones discriminadas (_tagged unions_):** Los valores en tiempo de ejecución
    (`RuntimeValue`) desacoplan el almacenamiento de las reglas de coerción y tipado impuestas por el perfil activo.
 
 ## 2. Diagrama de clases de diseño general
@@ -44,7 +46,7 @@ classDiagram
     direction TB
 
     %% ==========================================
-    %% CONTROLADOR Y COORDINACIÓN DE SIMULACIÓN
+    %% Controlador y coordinación de simulación
     %% ==========================================
     class AlgorithmInterpreter {
         -currentSimulation: Simulation | null
@@ -114,7 +116,7 @@ classDiagram
     Simulation ..> ExecutionContext : crea
 
     %% ==========================================
-    %% JERARQUÍA DEL AST (INMUTABLE / COMPOSITE)
+    %% Jerarquía del AST (inmutable / Composite)
     %% ==========================================
     class ASTNode {
         <<interface>>
@@ -186,7 +188,7 @@ classDiagram
     WhileNode "1" *-- "1" ExpressionNode : -condition
 
     %% ==========================================
-    %% JERARQUÍA DE EXPRESIONES (INTERPRETER GOF)
+    %% Jerarquía de expresiones (Interpreter GoF)
     %% ==========================================
     class BinaryOpNode {
         -operator: BinaryOperator
@@ -225,7 +227,7 @@ classDiagram
     UnaryOpNode "1" *-- "1" ExpressionNode : -expression
 
     %% ==========================================
-    %% INFRAESTRUCTURA DE MEMORIA Y ÁMBITOS
+    %% Infraestructura de memoria y ámbitos
     %% ==========================================
     class MemoryScope {
         +name: string
@@ -273,7 +275,7 @@ classDiagram
     MemoryCell "1" --> "1" RuntimeValue : -value
 
     %% ==========================================
-    %% TIPOS, ESTRUCTURAS Y OBJETOS DE VALOR
+    %% Tipos, estructuras y objetos de valor
     %% ==========================================
     class SimpleType {
         <<enumeration>>
@@ -350,7 +352,7 @@ classDiagram
 #### `AlgorithmInterpreter`
 
 - **Rol arquitectónico:** Controlador de fachada (_Facade Controller_) de la capa de dominio. Es el punto de entrada
-  exclusivo para las operaciones del sistema identificadas en los DSS (`uc02.md`).
+  exclusivo para las operaciones del sistema identificadas en los [DSS UC02](../../02-requirements/ssd/uc02.md).
 - **Responsabilidades:**
   - Coordinar la creación, avance paso a paso y detención de la simulación activa.
   - Proveer acceso de solo lectura al estado de memoria de la simulación en curso (principio CQS).
@@ -394,7 +396,7 @@ classDiagram
 - **Responsabilidades:** Almacenar instantáneas inmutables de cada paso (`ExecutionStep`), permitiendo la inspección
   temporal libre de efectos colaterales y la base para la futura función de retroceso (_step-back_).
 
-### 3.2 Jerarquía del AST de sentencias (_Statement Nodes_)
+### 3.2 Jerarquía del AST de sentencias (_statement nodes_)
 
 Modela la semántica de ejecución de las estructuras Nassi-Shneiderman aplicando el enfoque de **stepper explícito** y el
 principio de **Polimorfismo** (GRASP).
@@ -408,7 +410,7 @@ principio de **Polimorfismo** (GRASP).
 | **`SequenceNode`**                | `statements: StatementNode[]`                                                                    | Contenedor estructural de sentencias. Expone la colección de nodos hijos (`getStatements()`) para la inicialización de marcos `ExecutionFrame` en la pila. No es una instrucción ejecutable atómica.                               |
 | **`ProgramNode`**                 | `name: string`<br>`body: SequenceNode`                                                           | Raíz del programa. Expone el cuerpo principal para iniciar la ejecución en `Simulation`.                                                                                                                                           |
 
-### 3.3 Jerarquía de expresiones evaluables (_Expression Nodes_)
+### 3.3 Jerarquía de expresiones evaluables (_expression nodes_)
 
 Representa las fórmulas aritméticas, relacionales y lógicas que componen las asignaciones y condiciones de control.
 Aplica el patrón **Interpreter (GoF)** recursivo clásico. Todas las expresiones implementan la interfaz `ExpressionNode`
@@ -443,14 +445,16 @@ con la firma `evaluate(scope: MemoryScope): RuntimeValue`.
 
 #### `Symbol`
 
-- **Rol arquitectónico:** Representación en software del concepto `VariableEnMemoria` del Modelo de Dominio.
+- **Rol arquitectónico:** Representación en software del concepto `VariableEnMemoria` del [modelo de
+  dominio](../../01-business-modeling/domain-model.md).
 - **Responsabilidades:**
   - Mantener la correlación entre el identificador de la variable, su `DataType` y la `MemoryCell` que almacena su
     estado.
 
 #### `MemoryCell`
 
-- **Rol arquitectónico:** Contenedor físico de un valor en memoria (mapeo de `CeldaDeMemoria`).
+- **Rol arquitectónico:** Contenedor físico de un valor en memoria (mapeo de `CeldaDeMemoria` en el [modelo de
+  dominio](../../01-business-modeling/domain-model.md)).
 - **Responsabilidades:**
   - Almacenar y retornar el `RuntimeValue` asignado a la celda.
 
@@ -458,15 +462,15 @@ con la firma `evaluate(scope: MemoryScope): RuntimeValue`.
 
 Las estructuras de datos auxiliares que delimitan los contratos de la capa de dominio se especifican a continuación:
 
-| Tipo / Estructura   | Naturaleza     | Descripción                                                                              |
+| Tipo / estructura   | Naturaleza     | Descripción                                                                              |
 | :------------------ | :------------- | :--------------------------------------------------------------------------------------- |
 | `ExecutionMode`     | Enumeración    | Modo de ejecución: `'STEP_BY_STEP'` o `'CONTINUOUS'`.                                    |
 | `SimulationStatus`  | Enumeración    | Ciclo de vida: `'READY'`, `'RUNNING'`, `'PAUSED'`, `'FINISHED'`, `'ERROR'`, `'STOPPED'`. |
 | `ActionType`        | Enumeración    | Tipo de control sobre la pila: `'ADVANCE'`, `'PUSH_FRAME'`, `'PUSH_AND_ADVANCE'`.        |
-| `NextAction`        | _Tagged Union_ | Directiva emitida por un nodo hacia `Simulation` para manipular `executionStack`.        |
+| `NextAction`        | _Tagged union_ | Directiva emitida por un nodo hacia `Simulation` para manipular `executionStack`.        |
 | `SimpleType`        | Enumeración    | Tipos escalares: `'INTEGER'`, `'REAL'`, `'BOOLEAN'`, `'CHAR'`, `'STRING'`.               |
 | `DataType`          | Estructura     | Metadatos de tipado: categoría simple (`kind: SimpleType`).                              |
-| `RuntimeValue`      | _Tagged Union_ | Objeto de valor inmutable compuesto por `type: DataType` y `value: PrimitiveValue`.      |
+| `RuntimeValue`      | _Tagged union_ | Objeto de valor inmutable compuesto por `type: DataType` y `value: PrimitiveValue`.      |
 | `MemoryDestination` | Estructura     | Identificador de variable destino (_l-value_ escalar).                                   |
 | `MutationRecord`    | Estructura     | Registro de mutación: variable, ámbito, valor anterior y nuevo valor.                    |
 | `ExecutionResult`   | Estructura     | Resultado de sentencia: lista de mutaciones y acción de control (`NextAction`).          |
@@ -479,9 +483,9 @@ Las estructuras de datos auxiliares que delimitan los contratos de la capa de do
 La siguiente matriz certifica el cumplimiento entre las firmas de métodos de diseño y los contratos de operación
 establecidos en la disciplina de requisitos:
 
-| Contrato | Operación del sistema (DSS)       | Método en clase de diseño                             | Clases colaboradoras en el diseño                                                         |
-| :------- | :-------------------------------- | :---------------------------------------------------- | :---------------------------------------------------------------------------------------- |
-| **CO1**  | `startSimulation(programa, mode)` | `AlgorithmInterpreter.startSimulation(program, mode)` | `Simulation`, `ExecutionFrame`, `MemoryScope`, `ExecutionTrace`, `ExecutionStep`          |
-| **CO2**  | `executeNextStep()`               | `AlgorithmInterpreter.executeNextStep()`              | `Simulation`, `ExecutionFrame`, `StatementNode.execute(...)`, `MemoryScope`, `MemoryCell` |
-| **CO3**  | `getMemoryState(stepNumber?)`     | `AlgorithmInterpreter.getMemoryState(stepNumber?)`    | `Simulation`, `ExecutionTrace`, `ExecutionStep.getMemorySnapshot()`                       |
-| **CO4**  | `stopSimulation()`                | `AlgorithmInterpreter.stopSimulation()`               | `Simulation.stop()`, `ExecutionTrace.getSummary()`                                        |
+| Contrato                                                                                  | Operación del sistema (DSS)                                                                            | Método en clase de diseño                             | Clases colaboradoras en el diseño                                                         |
+| :---------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :---------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| [**CO1**](../../02-requirements/operation-contracts/uc02.md#contrato-co1-startsimulation) | [`startSimulation(programa, mode)`](../../02-requirements/ssd/uc02.md#21-startsimulationprograma-mode) | `AlgorithmInterpreter.startSimulation(program, mode)` | `Simulation`, `ExecutionFrame`, `MemoryScope`, `ExecutionTrace`, `ExecutionStep`          |
+| [**CO2**](../../02-requirements/operation-contracts/uc02.md#contrato-co2-executenextstep) | [`executeNextStep()`](../../02-requirements/ssd/uc02.md#22-executenextstep)                            | `AlgorithmInterpreter.executeNextStep()`              | `Simulation`, `ExecutionFrame`, `StatementNode.execute(...)`, `MemoryScope`, `MemoryCell` |
+| [**CO3**](../../02-requirements/operation-contracts/uc02.md#contrato-co3-getmemorystate)  | [`getMemoryState(stepNumber?)`](../../02-requirements/ssd/uc02.md#23-getmemorystatestepnumber)         | `AlgorithmInterpreter.getMemoryState(stepNumber?)`    | `Simulation`, `ExecutionTrace`, `ExecutionStep.getMemorySnapshot()`                       |
+| [**CO4**](../../02-requirements/operation-contracts/uc02.md#contrato-co4-stopsimulation)  | [`stopSimulation()`](../../02-requirements/ssd/uc02.md#24-stopsimulation)                              | `AlgorithmInterpreter.stopSimulation()`               | `Simulation.stop()`, `ExecutionTrace.getSummary()`                                        |

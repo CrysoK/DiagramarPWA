@@ -4,7 +4,7 @@
 
 Especificación de la semántica observada en _Diagramar_ (UNSa, 2009),
 reconstruida a partir del evaluador, el manejador de variables, los bloques N-S
-y el _Manual de Usuario_. Destino: perfil embebido **Diagramar 2009 (UNSa)** de
+y el _Manual de usuario_. Destino: perfil embebido **Diagramar 2009 (UNSa)** de
 Diagramar PWA.
 
 El lenguaje no es un lenguaje textual autónomo. El programa es un diagrama
@@ -15,7 +15,7 @@ geometría del diagrama, no en palabras clave de control.
 
 Fuentes: `Evaluador`, `ManejadorDeVariables`, `Asignacion`, `Ingreso`, `Salida`,
 `Alternativa`, `CicloCondicional`, `CicloIncondicional`, `Bloque` y el manual
-(apartado _Sintaxis, Operadores y Funciones_).
+(apartado _Sintaxis, operadores y funciones_).
 
 ## 1. Modelo de programa
 
@@ -108,8 +108,7 @@ En tiempo de ejecución un escalar es un `double` o un `string`. Un arreglo es u
 No existe el tipo _entero_. Hay un predicado que clasifica un número como entero
 cuando la parte fraccionaria hacia $-\infty$ es menor que `0.02`:
 
-$$
-\text{esEntero}(x) \iff \lfloor (x - \lfloor x \rfloor) \times 50 \rfloor = 0
+$$ \text{esEntero}(x) \iff \lfloor (x - \lfloor x \rfloor) \times 50 \rfloor = 0
 $$
 
 Así, `5` y `5.019` se aceptan como enteros; `5.02` no. Las operaciones que
@@ -391,7 +390,8 @@ de prueba y documentación. El carácter de separación de secciones es el códi
 
 ## 10. Lo que el perfil 2009 no cubre
 
-Respecto del modelo de dominio de Diagramar PWA, este lenguaje **no** tiene:
+Respecto del [modelo de dominio](../../01-business-modeling/domain-model.md) de
+Diagramar PWA, este lenguaje **no** tiene:
 
 - subprogramas (funciones o procedimientos);
 - _repetir-hasta_;

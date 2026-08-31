@@ -2,24 +2,24 @@
 
 > **Versión:** `0.1.0`
 
-## 1. Tabla de actores y objetivos (_Actor-Goal List_)
+## 1. Tabla de actores y objetivos (_actor-goal list_)
 
-| Actor          | Objetivo / Caso de uso                                | Nivel     | Formato en Inicio                     |
+| Actor          | Objetivo / caso de uso                                | Nivel     | Formato en inicio                     |
 | :------------- | :---------------------------------------------------- | :-------- | :------------------------------------ |
 | **Estudiante** | **UC01:** Construir algoritmo N-S                     | User-goal | _Brief_                               |
-|                | **UC02:** Ejecutar y depurar algoritmo                | User-goal | _Brief_ (Candidato a _Fully dressed_) |
+|                | [**UC02:** Ejecutar y depurar algoritmo](uc02.md)     | User-goal | _Brief_ (candidato a _fully dressed_) |
 |                | **UC03:** Transpilar algoritmo a lenguaje C           | User-goal | _Brief_                               |
 |                | **UC04:** Gestionar proyecto y exportación            | User-goal | _Brief_                               |
 |                | **UC05:** Importar diagrama legado                    | User-goal | _Brief_                               |
-|                | **UC06:** Resolver tarea evaluable                    | User-goal | _Brief_ (Candidato a _Fully dressed_) |
+|                | **UC06:** Resolver tarea evaluable                    | User-goal | _Brief_ (candidato a _fully dressed_) |
 |                | **UC07:** Instalar aplicación para uso fuera de línea | User-goal | _Brief_                               |
 | **Docente**    | **UC08:** Elaborar tarea evaluable                    | User-goal | _Brief_                               |
 |                | **UC09:** Evaluar y auditar entregas masivas          | User-goal | _Brief_                               |
 |                | **UC10:** Gestionar perfiles de configuración         | User-goal | _Brief_                               |
 
-## 2. Especificación de casos de uso en formato breve (_Brief_)
+## 2. Especificación de casos de uso en formato breve (_brief_)
 
-### Actor primario: Estudiante / Usuario general
+### Actor primario: Estudiante / usuario general
 
 #### UC01: Construir algoritmo N-S
 
@@ -31,7 +31,7 @@ programa principal y sus subprogramas/módulos, así como definir sus parámetro
 formales y modos de paso. El sistema valida la sintaxis en tiempo real y
 mantiene la contigüidad espacial propia de los estructogramas.
 
-#### UC02: Ejecutar y depurar algoritmo
+#### [UC02: Ejecutar y depurar algoritmo](uc02.md)
 
 **Resumen:** El estudiante ejecuta el algoritmo representado en el diagrama de
 forma continua o paso a paso. Durante la ejecución, el sistema resalta el bloque
@@ -58,10 +58,10 @@ escritorio a formatos visuales o portables (PNG/PDF).
 #### UC05: Importar diagrama legado
 
 **Resumen:** El usuario selecciona un archivo producido por la herramienta
-heredada (_Diagramar 2009_, extensión `.deb`). El sistema decodifica la
-estructura de origen, traduce sus componentes al nuevo modelo algorítmico y
-reconstruye el diagrama en el lienzo para su posterior edición, depuración o
-transpilación.
+heredada ([_Diagramar 2009_](../domain-rules/diagramar-2009.md), extensión
+`.deb`). El sistema decodifica la estructura de origen, traduce sus componentes
+al nuevo modelo algorítmico y reconstruye el diagrama en el lienzo para su
+posterior edición, depuración o transpilación.
 
 #### UC06: Resolver tarea evaluable
 
@@ -81,7 +81,7 @@ dispositivo desde el navegador web. El sistema configura el entorno local para
 garantizar la disponibilidad completa de las funciones de modelado, ejecución y
 evaluación en ventana independiente y sin requerir conexión a internet.
 
-### Actor primario: Docente / Cátedra
+### Actor primario: Docente / cátedra
 
 #### UC08: Elaborar tarea evaluable
 

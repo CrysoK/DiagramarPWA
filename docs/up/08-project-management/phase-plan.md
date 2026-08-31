@@ -37,14 +37,14 @@ cualquier desvío se compensa ajustando el alcance (_de-scoping_).
 
 ## 2. Hitos principales del proyecto
 
-| Hito                             | Fecha orientativa | Fecha programada | Estado / Entregable                                                                                                                                                                               |
-| :------------------------------- | :---------------: | :--------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Presentación de tema**         |    22/04/2026     |    20/04/2026    | Aprobado por la Comisión (04/05/2026).                                                                                                                                                            |
-| **Presentación de anteproyecto** |    03/06/2026     |    24/06/2026    | Aprobado por la Comisión (08/07/2026).                                                                                                                                                            |
-| **Cierre de fase de Inicio**     |         —         |    17/08/2026    | Visión, casos de uso _brief_, caso de uso crítico _fully dressed_ (UC02), especificación suplementaria, glosario, modelo de dominio, lista de riesgos, caso de desarrollo y plan de iteración E1. |
-| **Informe de avance (80%)**      |    06/10/2026     |    06/10/2026    | Núcleo ejecutable base probado (AST, parser, intérprete y layout N-S) y SAD preliminar.                                                                                                           |
-| **Cierre de Construcción**       |         —         |    31/01/2027    | PWA completamente funcional, instalable y operativa fuera de línea.                                                                                                                               |
-| **Informe final y defensa**      |     Feb. 2027     | Marzo/Abril 2027 | Documento final presentado y defensa oral del Seminario de Sistemas.                                                                                                                              |
+| Hito                             | Fecha orientativa | Fecha programada | Estado / entregable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :------------------------------- | :---------------: | :--------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Presentación de tema**         |    22/04/2026     |    20/04/2026    | Aprobado por la Comisión (04/05/2026).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Presentación de anteproyecto** |    03/06/2026     |    24/06/2026    | Aprobado por la Comisión (08/07/2026).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Cierre de fase de Inicio**     |         —         |    17/08/2026    | [Visión](../../02-requirements/vision.md), [casos de uso _brief_](../../02-requirements/use-cases/brief-use-cases.md), [caso de uso crítico _fully dressed_ (UC02)](../../02-requirements/use-cases/uc02.md), [especificación suplementaria](../../02-requirements/supp-spec.md), [glosario](../../02-requirements/glossary.md), [modelo de dominio](../../01-business-modeling/domain-model.md), [lista de riesgos](risk-list.md), [caso de desarrollo](../09-environment/dev-case.md) y [plan de iteración E1](iteration-plans/iteration-e1-plan.md). |
+| **Informe de avance (80%)**      |    06/10/2026     |    06/10/2026    | Núcleo ejecutable base probado (AST, parser, intérprete y layout N-S) y [SAD](../../03-design/sad.md) preliminar.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Cierre de Construcción**       |         —         |    31/01/2027    | PWA completamente funcional, instalable y operativa fuera de línea.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Informe final y defensa**      |     Feb. 2027     | Marzo/Abril 2027 | Documento final presentado y defensa oral del Seminario de Sistemas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## 3. Cronograma macro de fases e iteraciones
 
@@ -96,15 +96,17 @@ gantt
     T1                             :2027-02-01, 2027-03-31
 ```
 
-### 3.1 Fase de Inicio (Inception)
+### 3.1 Fase de Inicio
 
 - **Período:** 20/04/2026 al 17/08/2026 (17 semanas).
 - **Esfuerzo neto:** ~60 horas.
 - **Objetivos alcanzados:** Delimitación del alcance, viabilidad, selección
-  tecnológica, análisis de riesgos, caso de uso crítico (UC02) detallado,
-  definición de requisitos iniciales y planificación de la iteración E1.
+  tecnológica, análisis de riesgos, caso de uso crítico
+  ([UC02](../../02-requirements/use-cases/uc02.md)) detallado, definición de
+  requisitos iniciales y planificación de la [iteración
+  E1](iteration-plans/iteration-e1-plan.md).
 
-### 3.2 Fase de Elaboración (Elaboration)
+### 3.2 Fase de Elaboración
 
 - **Período:** 17/08/2026 al 05/10/2026 (7 semanas).
 - **Esfuerzo presupuestado:** ~90 horas.
@@ -116,28 +118,39 @@ gantt
     seguimiento de memoria y motor desacoplado de cálculo geométrico recursivo
     (_layout top-down_) para bloques N-S.
 - **Criterio de salida:** Arquitectura ejecutable base integrada y probada,
-  mitigación de riesgos críticos (R1 y R2), especificación detallada de casos de
-  uso críticos (_fully dressed_) y presentación formal del Informe de Avance.
+  mitigación de riesgos críticos
+  ([R1](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) y
+  [R2](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)),
+  especificación detallada de casos de uso críticos (_fully dressed_) y
+  presentación formal del Informe de Avance.
 
-### 3.3 Fase de Construcción (Construction)
+### 3.3 Fase de Construcción
 
 - **Período:** 06/10/2026 al 31/01/2027 (16 semanas).
 - **Esfuerzo presupuestado:** ~180 horas.
 - **Iteraciones:**
   - **Iteración C1 (5 semanas, 06/10 – 08/11):** Capa de presentación en Vue 3,
     interacción visual de bloques (_drag & drop_), soporte multidiagrama y
-    transpilador a lenguaje C (UC01, UC03).
+    transpilador a lenguaje C
+    ([UC01](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s),
+    [UC03](../../02-requirements/use-cases/brief-use-cases.md#uc03-transpilar-algoritmo-a-lenguaje-c)).
   - **Iteración C2 (4 semanas, 09/11 – 06/12):** Auditoría académica con
     WebCrypto (firma asimétrica e historial _hash-chain_), oráculo de evaluación
-    e importador de archivos legados `.deb` (UC05, UC06, UC08).
+    e importador de archivos legados `.deb`
+    ([UC05](../../02-requirements/use-cases/brief-use-cases.md#uc05-importar-diagrama-legado),
+    [UC06](../../02-requirements/use-cases/brief-use-cases.md#uc06-resolver-tarea-evaluable),
+    [UC08](../../02-requirements/use-cases/brief-use-cases.md#uc08-elaborar-tarea-evaluable)).
   - **Iteración C3 (7 semanas, 07/12 – 31/01/2027):** Módulo de evaluación
     masiva de lotes, gestión de perfiles de configuración, soporte fuera de
-    línea (Service Workers) y exportación gráfica/documental (UC04, UC07, UC09,
-    UC10).
+    línea (Service Workers) y exportación gráfica/documental
+    ([UC04](../../02-requirements/use-cases/brief-use-cases.md#uc04-gestionar-proyecto-y-exportacion),
+    [UC07](../../02-requirements/use-cases/brief-use-cases.md#uc07-instalar-aplicacion-para-uso-fuera-de-linea),
+    [UC09](../../02-requirements/use-cases/brief-use-cases.md#uc09-evaluar-y-auditar-entregas-masivas),
+    [UC10](../../02-requirements/use-cases/brief-use-cases.md#uc10-gestionar-perfiles-de-configuracion)).
 - **Criterio de salida:** Aplicación completa, funcional y desplegada en entorno
   web productivo, operativa sin conexión.
 
-### 3.4 Fase de Transición (Transition)
+### 3.4 Fase de Transición
 
 - **Período:** 01/02/2027 al 31/03/2027 (8 semanas).
 - **Esfuerzo presupuestado:** ~70 horas.
@@ -150,15 +163,15 @@ gantt
 
 ## 4. Asignación de requisitos y mitigación de riesgos
 
-| Fase / Iteración      | Casos de uso abordados                                                                                      | Riesgos mitigados | Entregables principales                                                                                                         |
-| :-------------------- | :---------------------------------------------------------------------------------------------------------- | :---------------: | :------------------------------------------------------------------------------------------------------------------------------ |
-| **Inicio (I1)**       | UC01 a UC10 (identificación global) y UC02 (escenario principal detallado).                                 |         —         | Visión, especificación suplementaria, glosario, modelo de dominio, lista de riesgos, caso de desarrollo y plan de iteración E1. |
-| **Elaboración (E1)**  | **UC02:** Análisis léxico-sintáctico, AST y ejecución lógica en memoria.                                    |      **R1**       | Núcleo lógico desacoplado en TypeScript con suite de pruebas en Vitest.                                                         |
-| **Elaboración (E2)**  | **UC02:** Depuración paso a paso.<br>**UC01:** Cálculo de layout geométrico N-S.                            |  **R1, R2, R4**   | Motor de trazado N-S, arquitectura ejecutable base e Informe de Avance.                                                         |
-| **Construcción (C1)** | **UC01:** Modelado interactivo en lienzo.<br>**UC03:** Transpilación a C.                                   |      **R4**       | UI interactiva en Vue 3 y generador de código C.                                                                                |
-| **Construcción (C2)** | **UC06:** Resolución de tareas.<br>**UC08:** Plantillas firmadas.<br>**UC05:** Importador `.deb`.           |    **R3, R5**     | Módulo criptográfico WebCrypto, oráculo de pruebas y parser de `.deb`.                                                          |
-| **Construcción (C3)** | **UC07:** Soporte offline.<br>**UC04:** Exportación.<br>**UC09:** Evaluación masiva.<br>**UC10:** Perfiles. |    **R6, R7**     | Manifiesto PWA, Service Worker, evaluador de lotes y selector de perfiles.                                                      |
-| **Transición (T1)**   | Estabilización integral del sistema.                                                                        |  **R4, R6, R7**   | PWA en producción, informe final y defensa académica.                                                                           |
+| Fase / iteración      | Casos de uso abordados                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                               Riesgos mitigados                               | Entregables principales                                                                                                                                                                                                                                                                                                                                                              |
+| :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Inicio (I1)**       | UC01 a UC10 (identificación global) y [UC02](../../02-requirements/use-cases/uc02.md) (escenario principal detallado).                                                                                                                                                                                                                                                                                                                                                                                      |                                       —                                       | [Visión](../../02-requirements/vision.md), [especificación suplementaria](../../02-requirements/supp-spec.md), [glosario](../../02-requirements/glossary.md), [modelo de dominio](../../01-business-modeling/domain-model.md), [lista de riesgos](risk-list.md), [caso de desarrollo](../09-environment/dev-case.md) y [plan de iteración E1](iteration-plans/iteration-e1-plan.md). |
+| **Elaboración (E1)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): Análisis léxico-sintáctico, AST y ejecución lógica en memoria.                                                                                                                                                                                                                                                                                                                                                                                         |     [**R1**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)     | Núcleo lógico desacoplado en TypeScript con suite de pruebas en Vitest.                                                                                                                                                                                                                                                                                                              |
+| **Elaboración (E2)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): Depuración paso a paso.<br>[**UC01**](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s): Cálculo de layout geométrico N-S.                                                                                                                                                                                                                                                                                              | [**R1, R2, R4**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) | Motor de trazado N-S, arquitectura ejecutable base e Informe de Avance.                                                                                                                                                                                                                                                                                                              |
+| **Construcción (C1)** | [**UC01**](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s): Modelado interactivo en lienzo.<br>[**UC03**](../../02-requirements/use-cases/brief-use-cases.md#uc03-transpilar-algoritmo-a-lenguaje-c): Transpilación a C.                                                                                                                                                                                                                                                   |     [**R4**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)     | UI interactiva en Vue 3 y generador de código C.                                                                                                                                                                                                                                                                                                                                     |
+| **Construcción (C2)** | [**UC06**](../../02-requirements/use-cases/brief-use-cases.md#uc06-resolver-tarea-evaluable): Resolución de tareas.<br>[**UC08**](../../02-requirements/use-cases/brief-use-cases.md#uc08-elaborar-tarea-evaluable): Plantillas firmadas.<br>[**UC05**](../../02-requirements/use-cases/brief-use-cases.md#uc05-importar-diagrama-legado): Importador `.deb`.                                                                                                                                               |   [**R3, R5**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)   | Módulo criptográfico WebCrypto, oráculo de pruebas y parser de `.deb`.                                                                                                                                                                                                                                                                                                               |
+| **Construcción (C3)** | [**UC07**](../../02-requirements/use-cases/brief-use-cases.md#uc07-instalar-aplicacion-para-uso-fuera-de-linea): Soporte offline.<br>[**UC04**](../../02-requirements/use-cases/brief-use-cases.md#uc04-gestionar-proyecto-y-exportacion): Exportación.<br>[**UC09**](../../02-requirements/use-cases/brief-use-cases.md#uc09-evaluar-y-auditar-entregas-masivas): Evaluación masiva.<br>[**UC10**](../../02-requirements/use-cases/brief-use-cases.md#uc10-gestionar-perfiles-de-configuracion): Perfiles. |   [**R6, R7**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)   | Manifiesto PWA, Service Worker, evaluador de lotes y selector de perfiles.                                                                                                                                                                                                                                                                                                           |
+| **Transición (T1)**   | Estabilización integral del sistema.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | [**R4, R6, R7**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) | PWA en producción, informe final y defensa académica.                                                                                                                                                                                                                                                                                                                                |
 
 ## 5. Resumen del presupuesto de esfuerzo
 

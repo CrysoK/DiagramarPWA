@@ -38,7 +38,7 @@ seguridad, de la plataforma y de los formatos de persistencia.
 - **Perfiles embebidos:** Esquemas de fábrica provistos con el sistema y no
   eliminables:
   - _Estándar:_ Referencia moderna general del producto.
-  - _Diagramar 2009 (UNSa):_ Reglas históricas de la herramienta legada y de la
+  - _Diagramar 2009 (UNSa)_: Reglas históricas de la herramienta legada y de la
     cátedra.
   - _C_ y _Python:_ Convenciones léxicas y operacionales próximas a dichos
     lenguajes.
@@ -85,7 +85,7 @@ seguridad, de la plataforma y de los formatos de persistencia.
     al final.
   - **Ciclo para:** Iteración incondicional gobernada por variable de control,
     valor inicial, final y paso.
-- **Subprograma (Módulo):** Diagrama secundario alojado en una pestaña
+- **Subprograma (módulo):** Diagrama secundario alojado en una pestaña
   independiente. Puede actuar como **función** (invocada en expresiones, con
   retorno de valor) o **procedimiento** (ejecutado mediante un bloque de
   invocación específico).
@@ -98,7 +98,7 @@ seguridad, de la plataforma y de los formatos de persistencia.
 - **Lienzo:** Superficie interactiva donde se construye, edita y anima el
   estructograma activo mediante acoplamiento magnético, zoom y desplazamiento
   panorámico.
-- **Espacio de trabajo (_Workspace_):** Sesión integral de trabajo que agrupa el
+- **Espacio de trabajo (_workspace_):** Sesión integral de trabajo que agrupa el
   diagrama principal, los subprogramas, el perfil activo, las restricciones de
   alcance y el historial de acciones. Constituye la unidad de persistencia del
   archivo `.dpwa`.
@@ -121,7 +121,7 @@ seguridad, de la plataforma y de los formatos de persistencia.
     cadena).
   - _Tipos estructurados:_ composiciones homogéneas o heterogéneas (lista,
     registro, enumeración, puntero).
-- **Ámbito (_Scope_):** Región del algoritmo donde un identificador es
+- **Ámbito (_scope_):** Región del algoritmo donde un identificador es
   accesible. Jerarquía: programa (global a la sesión), subprograma (local al
   módulo) y bloque (local al cuerpo de una estructura condicional o iterativa).
 - **Puntero:** Tipo de dato cuyos valores son direcciones de memoria a celdas o
@@ -151,13 +151,13 @@ seguridad, de la plataforma y de los formatos de persistencia.
 
 ## 4. Motor lógico y arquitectura
 
-- **Analizador léxico-sintáctico (_Parser_):** Componente de la capa de dominio
+- **Analizador léxico-sintáctico (_parser_):** Componente de la capa de dominio
   que valida las cadenas de texto de los bloques contra la gramática formal
   activa y genera el AST.
 - **Árbol de sintaxis abstracta (AST):** Estructura arbórea en memoria que
   representa la semántica lógica del algoritmo, desacoplada de la vista
   geométrica.
-- **Intérprete (_Interpreter_):** Motor de ejecución que recorre el AST en modo
+- **Intérprete (_interpreter_):** Motor de ejecución que recorre el AST en modo
   continuo o paso a paso, gestiona la tabla de símbolos y actualiza el estado de
   la memoria.
 - **Tabla de símbolos:** Estructura de datos dinámica que almacena
@@ -177,7 +177,7 @@ seguridad, de la plataforma y de los formatos de persistencia.
   entradas y cotejando las salidas producidas contra las esperadas.
 - **Resultado de caso de prueba:** Veredicto emitido por el oráculo: exitoso,
   salida incorrecta, tiempo excedido o error de ejecución.
-- **Principio de Separación Modelo-Vista:** Directriz de diseño que garantiza
+- **Principio de separación modelo-vista:** Directriz de diseño que garantiza
   que los objetos de dominio (AST, parser, intérprete, transpilador) no poseen
   conocimiento ni dependencias hacia los componentes de la interfaz de usuario
   (Vue.js, DOM).
@@ -198,10 +198,10 @@ seguridad, de la plataforma y de los formatos de persistencia.
 - **Historial semántico de acciones:** Registro cronológico acumulativo
   (_append-only_) de operaciones de edición y ejecución realizadas por el
   usuario.
-- **Acción de trabajo (Acción semántica):** Evento del historial con marca
+- **Acción de trabajo (acción semántica):** Evento del historial con marca
   temporal. Tipos: estructuración, edición de texto, ejecución, cambio de foco y
   declaración de identidad.
-- **Encadenamiento criptográfico (_Hash-Chain_):** Mecanismo de integridad donde
+- **Encadenamiento criptográfico (_hash-chain_):** Mecanismo de integridad donde
   cada acción semántica incorpora el hash SHA-256 de la acción anterior.
   Cualquier alteración manual del archivo rompe la cadena y la deja inválida.
 - **Métricas de auditoría:** Indicadores derivados calculados en vivo por el
@@ -222,17 +222,17 @@ seguridad, de la plataforma y de los formatos de persistencia.
 
 ## 6. Plataforma y formatos
 
-- **Aplicación Web Progresiva (PWA):** Estándar web moderno (W3C) que emplea
+- **Aplicación web progresiva (PWA):** Estándar web moderno (W3C) que emplea
   _Service Workers_ y manifiesto para permitir instalación en el sistema
   operativo, ejecución en ventana propia y funcionamiento autónomo sin internet.
 - **Service Worker:** Hilo de ejecución en segundo plano que intercepta
   peticiones y sirve los recursos indispensables desde la caché local.
-- **Arquitectura Client-Side pura:** Modelo donde todo el procesamiento,
+- **Arquitectura _client-side_ pura:** Modelo donde todo el procesamiento,
   ejecución y persistencia se realizan en el navegador, sin servidores de
   aplicación ni bases de datos remotas.
 - **WebCrypto API:** Interfaz nativa del navegador para operaciones
   criptográficas estándar (firmas ECDSA/RSA-PSS y funciones hash SHA-256).
-- **Renderizado geométrico (_Layout top-down_):** Algoritmo matemático
+- **Renderizado geométrico (_layout top-down_):** Algoritmo matemático
   desacoplado que calcula recursivamente las dimensiones espaciales de los
   bloques N-S antes de dibujarlos en pantalla.
 

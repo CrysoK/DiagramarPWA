@@ -13,16 +13,19 @@ pantallas superficiales, sino **mitigar tempranamente la mayor incertidumbre
 técnica y construir el núcleo de la arquitectura ejecutable (_architectural
 baseline_)**.
 
-En esta iteración se aborda el riesgo crítico **R1** (_complejidad del
-analizador léxico-sintáctico y del intérprete paso a paso_), implementando en
-**TypeScript puro** la capa de dominio desacoplada de la interfaz gráfica,
-guiada por el **principio de separación modelo-vista**.
+En esta iteración se aborda el riesgo crítico
+[**R1**](../risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)
+(_complejidad del analizador léxico-sintáctico y del intérprete paso a paso_),
+implementando en **TypeScript puro** la capa de dominio desacoplada de la
+interfaz gráfica, guiada por el **principio de separación modelo-vista**.
 
 ### Objetivos clave de E1
 
-1. **Mitigación del riesgo R1:** Diseñar y construir el analizador
-   léxico-sintáctico (_parser_), el árbol de sintaxis abstracta (AST) y la tabla
-   de símbolos para un subconjunto representativo del lenguaje algorítmico.
+1. **Mitigación del [riesgo
+   R1](../risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos):**
+   Diseñar y construir el analizador léxico-sintáctico (_parser_), el árbol de
+   sintaxis abstracta (AST) y la tabla de símbolos para un subconjunto
+   representativo del lenguaje algorítmico.
 2. **Implementación del núcleo de ejecución en memoria:** Desarrollar el motor
    de interpretación secuencial en memoria aplicando el patrón de diseño
    _Interpreter_ y patrones GRASP.
@@ -32,7 +35,7 @@ guiada por el **principio de separación modelo-vista**.
 4. **Inicio del modelo de diseño y del SAD:** Elaborar los diagramas de
    interacción y diagramas de clases de diseño (DCD) para las realizaciones de
    casos de uso seleccionadas, e iniciar el documento de arquitectura de
-   software (_technical memos_).
+   software ([SAD](../../03-design/sad.md)).
 
 ## 2. Presupuesto de recursos y capacidad operativa
 
@@ -55,11 +58,11 @@ En consonancia con la estrategia _use-case driven_ de Larman, el trabajo de la
 iteración se define por un subconjunto acotado de escenarios del caso de uso
 crítico:
 
-| Caso de uso                                        | Escenario / Requerimiento seleccionado                                                                                                                  | Prioridad | Justificación arquitectónica                                                                            |
-| :------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------------------------------ |
-| **UC02: Ejecutar y depurar algoritmo**             | **Escenario UC02-BasicMemory:** Ejecución secuencial en memoria de asignaciones, expresiones aritméticas/lógicas y bifurcaciones condicionales simples. | **Alta**  | Fuerza la definición del AST, la tabla de símbolos y el evaluador de expresiones sin depender de la UI. |
-| **Reglas de dominio (RULE-01 a RULE-03, RULE-11)** | Análisis léxico-sintáctico de operadores aritméticos, relacionales y lógicos según convención estándar y perfil legado 2009.                            | **Alta**  | Define la gramática formal y el sistema de tipos escalares (`INTEGER`, `REAL`, `BOOLEAN`, `STRING`).    |
-| **Requerimientos no funcionales (FURPS+)**         | Autonomía de ejecución en cliente, independencia de frameworks (separación modelo-vista) y tiempos de evaluación < 5 ms por instrucción.                | **Media** | Valida la viabilidad técnica y performance del motor en TypeScript puro.                                |
+| Caso de uso                                                                                                  | Escenario / requerimiento seleccionado                                                                                                                  | Prioridad | Justificación arquitectónica                                                                            |
+| :----------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------------------------------ |
+| [**UC02: Ejecutar y depurar algoritmo**](../../02-requirements/use-cases/uc02.md)                            | **Escenario UC02-BasicMemory:** Ejecución secuencial en memoria de asignaciones, expresiones aritméticas/lógicas y bifurcaciones condicionales simples. | **Alta**  | Fuerza la definición del AST, la tabla de símbolos y el evaluador de expresiones sin depender de la UI. |
+| [**Reglas de dominio**](../../02-requirements/supp-spec.md#9-reglas-de-dominio) (RULE-01 a RULE-03, RULE-11) | Análisis léxico-sintáctico de operadores aritméticos, relacionales y lógicos según convención estándar y perfil legado 2009.                            | **Alta**  | Define la gramática formal y el sistema de tipos escalares (`INTEGER`, `REAL`, `BOOLEAN`, `STRING`).    |
+| [**Requerimientos no funcionales (FURPS+)**](../../02-requirements/supp-spec.md)                             | Autonomía de ejecución en cliente, independencia de frameworks (separación modelo-vista) y tiempos de evaluación < 5 ms por instrucción.                | **Media** | Valida la viabilidad técnica y performance del motor en TypeScript puro.                                |
 
 _Nota:_ Se postergan para iteraciones posteriores (E2 y Construcción) los
 escenarios complejos de UC02 tales como: subprogramas con pasaje de parámetros
@@ -93,27 +96,34 @@ gantt
     Congelamiento de código y revisión  :t2, 2026-09-05, 2d
 ```
 
-### 4.1 Disciplina: Requisitos / análisis
+### 4.1 Disciplina: Requisitos y análisis
 
-- **REQ-E1.1:** Elaborar el diagrama de secuencia del sistema (DSS) para el
-  escenario básico de ejecución en memoria de **UC02**. _(2.0 hs)_
-- **REQ-E1.2:** Especificar los contratos de operación para las operaciones del
-  sistema: `startSimulation()`, `executeNextStep()` y `getMemoryState()`. _(2.5
-  hs)_
+- **REQ-E1.1:** Elaborar el diagrama de secuencia del sistema
+  ([DSS](../../02-requirements/ssd/uc02.md)) para el escenario básico de
+  ejecución en memoria de [**UC02**](../../02-requirements/use-cases/uc02.md).
+  _(2.0 hs)_
+- **REQ-E1.2:** Especificar los [contratos de
+  operación](../../02-requirements/operation-contracts/uc02.md) para las
+  operaciones del sistema: `startSimulation()`, `executeNextStep()` y
+  `getMemoryState()`. _(2.5 hs)_
 - **REQ-E1.3:** Refinar los conceptos de _ámbito de memoria_, _celda de memoria_
-  y _valor escalar_ en el modelo de dominio conceptual. _(1.5 hs)_
+  y _valor escalar_ en el [modelo de
+  dominio](../../01-business-modeling/domain-model.md) conceptual. _(1.5 hs)_
 
 ### 4.2 Disciplina: Diseño orientado a objetos (OOA/D)
 
-- **DES-E1.1:** Diseñar las realizaciones de casos de uso mediante diagramas de
+- **DES-E1.1:** Diseñar las [realizaciones de casos de
+  uso](../../03-design/interaction-diagrams/uc02.md) mediante diagramas de
   interacción (secuencia) aplicando **GRASP** (_Information Expert_, _Creator_,
   _Controller_, _Pure Fabrication_). _(4.0 hs)_
 - **DES-E1.2:** Diseñar la estructura del AST aplicando el patrón de diseño
-  **Interpreter** (GoF) y modelar el diagrama de clases de diseño (DCD) de la
-  capa de dominio. _(3.5 hs)_
+  **Interpreter** (GoF) y modelar el [diagrama de clases de diseño
+  (DCD)](../../03-design/design-class-diagrams/domain-engine.md) de la capa de
+  dominio. _(3.5 hs)_
 - **DES-E1.3:** Redactar los memorandos técnicos iniciales en el documento de
-  arquitectura de software (SAD): decisiones sobre representación de memoria
-  (_tagged unions_) y aislamiento del motor lógico. _(2.0 hs)_
+  arquitectura de software ([SAD](../../03-design/sad.md)): decisiones sobre
+  representación de memoria (_tagged unions_) y aislamiento del motor lógico.
+  _(2.0 hs)_
 
 ### 4.3 Disciplina: Implementación (núcleo TypeScript)
 
@@ -152,7 +162,7 @@ gantt
 | **Diseño**              | DES-E1.1, DES-E1.2, DES-E1.3           |          9.5 hs           |   25.7%    |
 | **Implementación**      | IMP-E1.1, IMP-E1.2, IMP-E1.3, IMP-E1.4 |          13.5 hs          |   36.5%    |
 | **Pruebas (TDD)**       | TST-E1.1, TST-E1.2, TST-E1.3           |          6.0 hs           |   16.2%    |
-| **Gestión / entorno**   | MGT-E1.1, MGT-E1.2                     |          2.0 hs           |    5.4%    |
+| **Gestión y entorno**   | MGT-E1.1, MGT-E1.2                     |          2.0 hs           |    5.4%    |
 | **Total presupuestado** |                                        |        **37.0 hs**        |  **100%**  |
 
 ## 6. Guía de adaptación y descarte (criterios de recorte)

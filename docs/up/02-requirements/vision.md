@@ -116,12 +116,12 @@ institución.
 
 ## 3. Lista de actores y objetivos de usuario
 
-| Actor                                 | Rol / Descripción                                                         | Objetivos principales                                                                                                                                                                                                                                                                                                                                                                  |
+| Actor                                 | Rol / descripción                                                         | Objetivos principales                                                                                                                                                                                                                                                                                                                                                                  |
 | :------------------------------------ | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Estudiante**<br>_(Primario)_        | Alumno que modela soluciones lógicas y ejercita algoritmos estructurados. | 1. Construir y editar diagramas N-S interactivamente.<br>2. Depurar algoritmos paso a paso con seguimiento visual de memoria (prueba de escritorio).<br>3. Autoevaluar soluciones mediante casos de prueba.<br>4. Trabajar de forma fluida sin conexión a internet.<br>5. Exportar entregas de tareas y exámenes.                                                                      |
 | **Docente / Cátedra**<br>_(Primario)_ | Profesor o auxiliar que diseña material didáctico y califica soluciones.  | 1. Diseñar tareas evaluables con restricciones y casos de prueba inyectados.<br>2. Sellar digitalmente las consignas mediante firma asimétrica.<br>3. Evaluar masivamente entregables mediante ejecución automática del oráculo.<br>4. Auditar la integridad y el historial de resolución de las entregas para detectar plagio.<br>5. Importar ejercicios heredados en formato `.deb`. |
 
-## 4. Características del sistema (System Features)
+## 4. Características del sistema (features)
 
 - **FEAT-01: Modelado geométrico interactivo N-S:** Lienzo estructurado con
   soporte de _drag and drop_, acoplamiento magnético (_snap_), controles de
@@ -160,10 +160,10 @@ institución.
 
 ### 5.1 Restricciones
 
-- **Arquitectura estrictamente Client-Side:** Sin servidor de aplicaciones ni
+- **Arquitectura estrictamente _client-side_:** Sin servidor de aplicaciones ni
   base de datos centralizada; la ejecución y el almacenamiento se gestionan en
   el navegador.
-- **Principio de Separación Modelo-Vista:** La lógica de dominio (AST, parser,
+- **Principio de separación modelo-vista:** La lógica de dominio (AST, parser,
   intérprete, transpilador) permanece totalmente desacoplada de la interfaz de
   usuario (Vue.js).
 - **Licenciamiento permisivo:** Dependencias de código abierto bajo licencias
