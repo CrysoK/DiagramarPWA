@@ -1,0 +1,18 @@
+export type UnaryOperator = 'PLUS' | 'MINUS' | 'NOT'
+
+export type BinaryOperator =
+  | 'ADD'
+  | 'SUB'
+  | 'MUL'
+  | 'DIV'
+  | 'IDIV'
+  | 'MOD'
+  | 'POW'
+  | 'EQ'
+  | 'NE'
+  | 'LT'
+  | 'LE'
+  | 'GT'
+  | 'GE'
+  | 'AND'
+  | 'OR'
