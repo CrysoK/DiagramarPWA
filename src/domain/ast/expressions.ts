@@ -2,16 +2,11 @@ import type { UnaryOperator, BinaryOperator } from './tokens'
 import type { RuntimeValue } from '../memory/runtime-value'
 import { createBooleanValue, isBooleanValue } from '../memory/runtime-value'
 import type { MemoryScope } from '../memory/memory-scope'
-import type { ASTNode } from './ast-node'
+import { generateNodeId, type ASTNode } from './ast-node'
 import { applyUnary, applyBinary } from './operators'
 import { TypeMismatchError } from '../errors/runtime-error'
 
 export type { UnaryOperator, BinaryOperator }
-
-let nextNodeId = 0
-function generateNodeId(prefix: string): string {
-  return `${prefix}_${++nextNodeId}`
-}
 
 export interface ExpressionNode extends ASTNode {
   evaluate(scope: MemoryScope): RuntimeValue
