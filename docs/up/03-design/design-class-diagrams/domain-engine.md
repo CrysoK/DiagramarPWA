@@ -1,6 +1,6 @@
 # Diagrama de clases de diseño: motor de dominio
 
-> **Versión:** `0.1.0`
+> **Versión:** `0.2.0`
 
 ## 1. Introducción y decisiones arquitectónicas
 
@@ -65,8 +65,9 @@ classDiagram
         +constructor(program: ProgramNode, mode: ExecutionMode)
         +step(): ExecutionStep
         +getStatus(): SimulationStatus
-        +setStatus(status: SimulationStatus): void
+        +getLastStep(): ExecutionStep
         +stop(): void
+        +getSummary(): TraceSummary
         +getMemorySnapshot(stepNumber?: number): MemorySnapshot
         -initExecutionStack(statements: StatementNode[]): void
         -captureMemorySnapshot(): MemorySnapshot
@@ -381,6 +382,8 @@ classDiagram
     programa.
   - `captureMemorySnapshot(): MemorySnapshot`: Consolida instantáneas profundas de los ámbitos activos (`ScopeSnapshot`)
     en un objeto inmutable de sesión.
+  - `stop(): void`: Exige estado `RUNNING` o `PAUSED` y pasa a `STOPPED`.
+  - `getSummary(): TraceSummary`: Consulta; delega en `ExecutionTrace.getSummary()`.
 
 #### `ExecutionFrame`
 
