@@ -12,11 +12,16 @@
 
 ## Estado actual
 
-El repositorio se encuentra al inicio de la fase de elaboración del Proceso
-Unificado (iteración E1). La documentación de requisitos, el modelo de dominio y
-la planificación están en `docs/up/`. El código fuente corresponde al andamiaje
-inicial de Vue 3 y TypeScript; el núcleo de dominio (analizador, árbol de
-sintaxis abstracta e intérprete) aún no está implementado.
+El proyecto se encuentra en la fase de Elaboración del Proceso Unificado. Se
+completó la iteración **E1**, implementando el núcleo de ejecución en memoria en
+TypeScript puro (árbol de sintaxis abstracta de sentencias y expresiones,
+sistema de tipos escalares, tabla de símbolos e intérprete secuencial),
+verificado integralmente mediante pruebas unitarias en Vitest.
+
+La iteración activa es **E2**, cuyo objetivo consiste en completar el analizador
+léxico y sintáctico de expresiones escalares y desarrollar el motor de cálculo
+geométrico recursivo (_layout top-down_) desacoplado de la interfaz gráfica,
+consolidando la línea base arquitectónica y el informe de avance.
 
 ## Propósito
 
@@ -59,7 +64,8 @@ docs/up/
 ├── 01-business-modeling/     # modelo de dominio
 ├── 02-requirements/          # visión, casos de uso, especificación
 │                             # suplementaria, glosario y reglas de dominio
-├── 03-design/                # documento de arquitectura de software
+├── 03-design/                # documento de arquitectura de software (SAD),
+│                             # DCD, diagramas de interacción y memorandos
 ├── 08-project-management/    # plan de fase, planes de iteración y lista de
 │                             # riesgos
 └── 09-environment/           # caso de desarrollo
@@ -81,8 +87,14 @@ pnpm install
 # Servidor de desarrollo
 pnpm dev
 
-# Pruebas unitarias
+# Pruebas unitarias (modo interactivo / watch)
 pnpm test:unit
+
+# Ejecución de pruebas unitarias
+pnpm test:unit:run
+
+# Demostración ejecutable de prueba de escritorio (E1)
+pnpm demo:e1
 
 # Comprobación de tipos
 pnpm type-check

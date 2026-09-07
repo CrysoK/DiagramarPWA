@@ -58,7 +58,7 @@ true`.
 | **Implementación**       | Modelo de implementación (Código fuente)                                                 |                  |             s             |             r              |            r             |
 | **Pruebas**              | Modelo de pruebas (Pruebas unitarias)                                                    |                  |             s             |             r              |            r             |
 | **Gestión del proyecto** | [Plan de fase](../08-project-management/phase-plan.md)                                   |        s         |             r             |                            |                          |
-|                          | [Plan de iteración](../08-project-management/iteration-plans/iteration-e1-plan.md)       |        s         |             r             |             r              |            r             |
+|                          | [Planes de iteración](../08-project-management/iteration-plans/)                         |        s         |             r             |             r              |            r             |
 |                          | [Lista de riesgos](../08-project-management/risk-list.md)                                |        s         |             r             |                            |                          |
 | **Entorno**              | Caso de desarrollo                                                                       |        s         |             r             |                            |                          |
 
@@ -123,10 +123,9 @@ true`.
 
 - **[Plan de fase](../08-project-management/phase-plan.md):** Establece los
   hitos macro del proyecto vinculados al calendario académico del Seminario.
-- **[Plan de
-  iteración](../08-project-management/iteration-plans/iteration-e1-plan.md):**
-  Planes operativos de corto plazo (2 a 4 semanas) con caja de tiempo
-  (_timebox_) fija que detallan los escenarios específicos a implementar.
+- **[Planes de iteración](../08-project-management/iteration-plans/):** Planes
+  operativos de corto plazo (2 a 4 semanas) con caja de tiempo (_timebox_) fija
+  que detallan los escenarios específicos a implementar en cada ciclo.
 - **[Lista de riesgos](../08-project-management/risk-list.md):** Registro
   jerárquico de incertidumbres técnicas y operativas con sus correspondientes
   planes de mitigación.

@@ -1,6 +1,6 @@
 # Plan de fase
 
-> **Versión:** `0.1.0`
+> **Versión:** `0.2.0`
 
 ## 1. Introducción y capacidad operativa
 
@@ -42,7 +42,7 @@ cualquier desvío se compensa ajustando el alcance (_de-scoping_).
 | **Presentación de tema**         |    22/04/2026     |    20/04/2026    | Aprobado por la Comisión (04/05/2026).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **Presentación de anteproyecto** |    03/06/2026     |    24/06/2026    | Aprobado por la Comisión (08/07/2026).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **Cierre de fase de Inicio**     |         —         |    17/08/2026    | [Visión](../../02-requirements/vision.md), [casos de uso _brief_](../../02-requirements/use-cases/brief-use-cases.md), [caso de uso crítico _fully dressed_ (UC02)](../../02-requirements/use-cases/uc02.md), [especificación suplementaria](../../02-requirements/supp-spec.md), [glosario](../../02-requirements/glossary.md), [modelo de dominio](../../01-business-modeling/domain-model.md), [lista de riesgos](risk-list.md), [caso de desarrollo](../09-environment/dev-case.md) y [plan de iteración E1](iteration-plans/iteration-e1-plan.md). |
-| **Informe de avance (80%)**      |    06/10/2026     |    06/10/2026    | Núcleo ejecutable base probado (AST, parser, intérprete y layout N-S) y [SAD](../../03-design/sad.md) preliminar.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Informe de avance**            |    06/10/2026     |    06/10/2026    | Núcleo ejecutable base probado (AST, parser, intérprete y layout N-S) y [SAD](../../03-design/sad.md) preliminar.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **Cierre de Construcción**       |         —         |    31/01/2027    | PWA completamente funcional, instalable y operativa fuera de línea.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **Informe final y defensa**      |     Feb. 2027     | Marzo/Abril 2027 | Documento final presentado y defensa oral del Seminario de Sistemas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
@@ -73,7 +73,7 @@ gantt
     Tema aprobado                  :milestone, 2026-05-04, 0d
     Anteproyecto aprobado          :milestone, 2026-07-08, 0d
     Examen final (22/09)           :milestone, 2026-09-22, 0d
-    Informe de avance (80%)        :milestone, 2026-10-06, 0d
+    Informe de avance              :milestone, 2026-10-06, 0d
     Parcial 1                      :milestone, 2026-10-07, 0d
     Parcial 2                      :milestone, 2026-11-11, 0d
     Finales dic.                   :milestone, 2026-12-03, 15d
@@ -84,7 +84,7 @@ gantt
     I1                             :done, 2026-04-20, 2026-08-17
 
     section Elaboración
-    E1                             :active, 2026-08-17, 2026-09-06
+    E1                             :done, 2026-08-17, 2026-09-06
     E2                             :active, 2026-09-07, 2026-10-05
 
     section Construcción
@@ -109,20 +109,25 @@ gantt
 ### 3.2 Fase de Elaboración
 
 - **Período:** 17/08/2026 al 05/10/2026 (7 semanas).
-- **Esfuerzo presupuestado:** ~90 horas.
+- **Esfuerzo presupuestado:** ~75 a 90 horas (~75 horas netas consolidadas entre
+  E1 y E2, contemplando la capacidad reducida por exámenes).
 - **Iteraciones:**
-  - **Iteración E1 (3 semanas, 17/08 – 06/09):** Construcción del núcleo lógico
-    en TypeScript: parser léxico-sintáctico, AST, sistema de tipos e intérprete
-    secuencial en memoria con pruebas unitarias automatizadas (Vitest).
-  - **Iteración E2 (4 semanas, 07/09 – 05/10):** Intérprete paso a paso con
-    seguimiento de memoria y motor desacoplado de cálculo geométrico recursivo
-    (_layout top-down_) para bloques N-S.
+  - **Iteración E1 (3 semanas, 17/08 – 06/09):** Núcleo lógico en TypeScript:
+    AST, sistema de tipos escalares, memoria e intérprete secuencial con pruebas
+    unitarias automatizadas (Vitest). El analizador sintáctico de expresiones se
+    pospuso para la iteración E2. Ver [plan de iteración
+    E1](iteration-plans/iteration-e1-plan.md).
+  - **Iteración E2 (4 semanas, 07/09 – 05/10):** Analizador léxico y sintáctico
+    de expresiones, motor de cálculo geométrico recursivo (_layout top-down_)
+    desacoplado de la vista, integración de la línea base arquitectónica y
+    presentación formal del informe de avance. Ver [plan de iteración
+    E2](iteration-plans/iteration-e2-plan.md).
 - **Criterio de salida:** Arquitectura ejecutable base integrada y probada,
   mitigación de riesgos críticos
   ([R1](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) y
   [R2](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)),
   especificación detallada de casos de uso críticos (_fully dressed_) y
-  presentación formal del Informe de Avance.
+  presentación formal del informe de avance.
 
 ### 3.3 Fase de Construcción
 
@@ -166,8 +171,8 @@ gantt
 | Fase / iteración      | Casos de uso abordados                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                               Riesgos mitigados                               | Entregables principales                                                                                                                                                                                                                                                                                                                                                              |
 | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Inicio (I1)**       | UC01 a UC10 (identificación global) y [UC02](../../02-requirements/use-cases/uc02.md) (escenario principal detallado).                                                                                                                                                                                                                                                                                                                                                                                      |                                       —                                       | [Visión](../../02-requirements/vision.md), [especificación suplementaria](../../02-requirements/supp-spec.md), [glosario](../../02-requirements/glossary.md), [modelo de dominio](../../01-business-modeling/domain-model.md), [lista de riesgos](risk-list.md), [caso de desarrollo](../09-environment/dev-case.md) y [plan de iteración E1](iteration-plans/iteration-e1-plan.md). |
-| **Elaboración (E1)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): Análisis léxico-sintáctico, AST y ejecución lógica en memoria.                                                                                                                                                                                                                                                                                                                                                                                         |     [**R1**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)     | Núcleo lógico desacoplado en TypeScript con suite de pruebas en Vitest.                                                                                                                                                                                                                                                                                                              |
-| **Elaboración (E2)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): Depuración paso a paso.<br>[**UC01**](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s): Cálculo de layout geométrico N-S.                                                                                                                                                                                                                                                                                              | [**R1, R2, R4**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) | Motor de trazado N-S, arquitectura ejecutable base e Informe de Avance.                                                                                                                                                                                                                                                                                                              |
+| **Elaboración (E1)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): AST, gestión de memoria e intérprete secuencial en memoria.                                                                                                                                                                                                                                                                                                                                                                                            |     [**R1**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)     | Núcleo lógico desacoplado en TypeScript con suite de pruebas en Vitest.                                                                                                                                                                                                                                                                                                              |
+| **Elaboración (E2)**  | [**UC02**](../../02-requirements/use-cases/uc02.md): Analizador léxico y sintáctico de expresiones.<br>[**UC01**](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s): Motor de cálculo geométrico N-S (_layout top-down_).                                                                                                                                                                                                                                                    | [**R1, R2, R4**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos) | Analizador de expresiones, motor de trazado N-S, arquitectura ejecutable base e informe de avance.                                                                                                                                                                                                                                                                                   |
 | **Construcción (C1)** | [**UC01**](../../02-requirements/use-cases/brief-use-cases.md#uc01-construir-algoritmo-n-s): Modelado interactivo en lienzo.<br>[**UC03**](../../02-requirements/use-cases/brief-use-cases.md#uc03-transpilar-algoritmo-a-lenguaje-c): Transpilación a C.                                                                                                                                                                                                                                                   |     [**R4**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)     | UI interactiva en Vue 3 y generador de código C.                                                                                                                                                                                                                                                                                                                                     |
 | **Construcción (C2)** | [**UC06**](../../02-requirements/use-cases/brief-use-cases.md#uc06-resolver-tarea-evaluable): Resolución de tareas.<br>[**UC08**](../../02-requirements/use-cases/brief-use-cases.md#uc08-elaborar-tarea-evaluable): Plantillas firmadas.<br>[**UC05**](../../02-requirements/use-cases/brief-use-cases.md#uc05-importar-diagrama-legado): Importador `.deb`.                                                                                                                                               |   [**R3, R5**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)   | Módulo criptográfico WebCrypto, oráculo de pruebas y parser de `.deb`.                                                                                                                                                                                                                                                                                                               |
 | **Construcción (C3)** | [**UC07**](../../02-requirements/use-cases/brief-use-cases.md#uc07-instalar-aplicacion-para-uso-fuera-de-linea): Soporte offline.<br>[**UC04**](../../02-requirements/use-cases/brief-use-cases.md#uc04-gestionar-proyecto-y-exportacion): Exportación.<br>[**UC09**](../../02-requirements/use-cases/brief-use-cases.md#uc09-evaluar-y-auditar-entregas-masivas): Evaluación masiva.<br>[**UC10**](../../02-requirements/use-cases/brief-use-cases.md#uc10-gestionar-perfiles-de-configuracion): Perfiles. |   [**R6, R7**](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)   | Manifiesto PWA, Service Worker, evaluador de lotes y selector de perfiles.                                                                                                                                                                                                                                                                                                           |
@@ -178,10 +183,16 @@ gantt
 | Fase                 |    Iteraciones    | Duración calendario | Esfuerzo estimado | Proporción |
 | :------------------- | :---------------: | :-----------------: | :---------------: | :--------: |
 | **Inicio**           |        I1         |     17 semanas      |      ~60 hs.      |   15.0%    |
-| **Elaboración**      |      E1 – E2      |      7 semanas      |      ~90 hs.      |   22.5%    |
+| **Elaboración**      |      E1 – E2      |      7 semanas      |   ~75 – 90 hs.*   |   22.5%    |
 | **Construcción**     |      C1 – C3      |     16 semanas      |     ~180 hs.      |   45.0%    |
 | **Transición**       |        T1         |      8 semanas      |      ~70 hs.      |   17.5%    |
 | **Total proyectado** | **7 iteraciones** |   **48 semanas**    |   **~400 hs.**    |  **100%**  |
+
+_\* Nota:_ El presupuesto de Elaboración se estimó preliminarmente en ~90 hs
+durante Inicio y se consolidó en ~75 hs netas en los planes detallados de E1 (37
+hs) y E2 (38 hs), reflejando la ventana de dedicación reducida por el turno de
+examen de septiembre
+([R4](risk-list.md#2-matriz-de-evaluación-y-mitigación-de-riesgos)).
 
 ## 6. Principios de control y adaptación
 
